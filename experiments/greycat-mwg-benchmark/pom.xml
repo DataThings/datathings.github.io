@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.datathings</groupId>
+    <artifactId>greycat-mwg-benchmark</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>greycat-mwg-benchmark</name>
+    <description>GreyCat temporal and many-worlds benchmarks</description>
+
+    <properties>
+        <jodatime.version>2.5</jodatime.version>
+        <junit.version>4.11</junit.version>
+        <log4j.version>1.2.17</log4j.version>
+        <greycat.version>12-SNAPSHOT</greycat.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.influxdb</groupId>
+            <artifactId>influxdb-java</artifactId>
+            <version>2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.datathings</groupId>
+            <artifactId>greycat</artifactId>
+            <version>${greycat.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.datathings</groupId>
+            <artifactId>greycat-ml</artifactId>
+            <version>${greycat.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.datathings</groupId>
+            <artifactId>greycat-leveldb</artifactId>
+            <version>${greycat.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.uncommons.maths</groupId>
+            <artifactId>uncommons-maths</artifactId>
+            <version>1.2.2a</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>greycat.benchmark.StairTest</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
