@@ -6,6 +6,6 @@ theme = "hugo-cactus-theme"
 googleAnalytics = ""
 # Disable comments by leaving disqusShortname empty
 disqusShortname = ""
-publishDir = public/blog
+publishDir = "public/blog"
 [social]
     twitter  = "https://twitter.com/datathingslu"
