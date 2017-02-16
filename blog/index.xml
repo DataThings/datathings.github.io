@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The DataThings Blog</title>
+    <link>http://datathings.com/blog/index.xml</link>
+    <description>Recent content on The DataThings Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 16 Feb 2017 17:07:36 +0100</lastBuildDate>
+    <atom:link href="http://datathings.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Say Hello to DataThings blog</title>
+      <link>http://datathings.com/blog/post/say-hello/</link>
+      <pubDate>Thu, 16 Feb 2017 17:07:36 +0100</pubDate>
+      
+      <guid>http://datathings.com/blog/post/say-hello/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>http://datathings.com/blog/about/</link>
+      <pubDate>Sat, 20 Jun 2015 14:02:37 +0200</pubDate>
+      
+      <guid>http://datathings.com/blog/about/</guid>
+      <description>
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa ullam earum dolorum! Sed, perspiciatis.&lt;/p&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&#34;lorem-ipsum-dolor&#34;&gt;Lorem ipsum dolor.&lt;/h3&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea dicta corporis ad inventore itaque impedit dolor atque amet exercitationem! Veniam qui voluptas maiores vel laudantium necessitatibus, velit ducimus! Iste hic facere, accusamus fugiat enim facilis.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

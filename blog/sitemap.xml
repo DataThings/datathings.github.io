@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://datathings.com/blog/post/say-hello/</loc>
+    <lastmod>2017-02-16T17:07:36+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://datathings.com/blog/about/</loc>
+    <lastmod>2015-06-20T14:02:37+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://datathings.com/blog/about/</loc>
+    <lastmod>2015-06-20T14:02:37+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://datathings.com/blog/post/</loc>
+    <lastmod>2017-02-16T17:07:36+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://datathings.com/blog/</loc>
+    <lastmod>2017-02-16T17:07:36+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>
