@@ -14,6 +14,10 @@ On mac, simply do a `brew install hugo`
   ```
 - edit the newly created files
   - if any static content use the static directory (images...)
+- test it using embedded server
+```sh
+hugo serve
+```
 - sync the master branch:
 ```sh
 sh deploy.sh
