@@ -1,10 +1,11 @@
 title = "The DataThings Blog"
-baseurl = "http://datathings.com/"
+baseurl = "http://datathings.com/blog/"
 languageCode = "en-us"
 theme = "hugo-cactus-theme"
 # Enter your tracking code to enable Google Analytics
 googleAnalytics = ""
 # Disable comments by leaving disqusShortname empty
 disqusShortname = ""
+publishDir = public/blog
 [social]
     twitter  = "https://twitter.com/datathingslu"
