@@ -90,7 +90,11 @@ in western [[Scotland]], near Italy to the conquest of India with the conflict.
 
 &lt;p&gt;This is animation from Alex Graves, showing an LSTM network performing in live:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://youtu.be/mLxsbWAYIpw&#34;&gt;https://youtu.be/mLxsbWAYIpw&lt;/a&gt;&lt;/p&gt;
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/mLxsbWAYIpw&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+
 
 &lt;ul&gt;
 &lt;li&gt;Row 1: Shows the letters that are recognised (outputs of the network)&lt;/li&gt;
