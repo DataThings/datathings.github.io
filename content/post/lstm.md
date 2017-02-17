@@ -7,34 +7,33 @@ author ="Assaad Moawad"
 +++
 
 # Introduction
-[LSTM Neural Networks] (https://en.wikipedia.org/wiki/Long_short-term_memory), which stand for **L**ong **S**hort-**T**erm **M**emory, are a particular type of recurrent neural networks that got lot of attention the last few years within the machine learning community. 
+[LSTM Neural Networks] (https://en.wikipedia.org/wiki/Long_short-term_memory), which stand for **L**ong **S**hort-**T**erm **M**emory, are a particular type of recurrent neural networks that got lot of attention recently within the machine learning community. 
 
 
 In a simple way, LSTM networks have some internal **contextual state cells** that act as long-term or short-term memory cells. 
-The output of the LSTM network is **modulated** by the state of these memory cells. This is a very important property when we want the prediction of the neural network to depend on the **historical context** of inputs, rather than only on the last input.
+The output of the LSTM network is **modulated** by the state of these cells. This is a very important property when we need the prediction of the neural network to depend on the **historical context** of inputs, rather than only on the very last input.
 
-As a simple example, consider that we want to predict the next number of the following sequence:  6 -> 7 -> 8 -> ?. We would like to have the prediction to be **9**. However, if we provide this sequence: 2 -> 4 -> 8 -> ?, we would like to get the prediction of **16**.
-Although in both cases, the current last input was number **8**, the prediction outcome should be different (because we want take into account the contextual information of previous values and not only the last one).
+As a simple example, consider that we want to predict the next number of the following sequence:  6 -> 7 -> 8 -> ?. We would like to have the next output to be **9** (x+1). However, if we provide this sequence: 2 -> 4 -> 8 -> ?, we would like to get **16** (2x).
+Although in both cases, the current last input was number **8**, the prediction outcome should be different (when we take into account the contextual information of previous values and not only the last one).
 
-LSTM networks manage to achieve this goal by integrating a **loop** that allows information to be passed from one step of the network to the next. These loops make recurrent neural networks seem magical. But if we think about it for a second, as you read this post, you understand each word based on your understanding of the previous words. You don’t throw everything away and start thinking from scratch again at each word.
+# How they work
+LSTM networks manage to keep contextual information of inputs by integrating a **loop** that allows information to flow from one step to the next. These loops make recurrent neural networks seem magical. But if we think about it for a second, as you are reading this post, you are understanding each word based on your understanding of the previous words. You don’t throw everything away and start thinking from scratch at each word. Similarly, LSTM predictions are always conditionned by the past experience of the network's inputs.
 
 
 {{< figure src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png" title="LSTM loop unrolled" >}}
 
 
-On the other hand, the more time passes, the less likely it becomes that the next event depends on a very old one. This time dependency distance itself is as well a contextual information. LSTM networks achieve this by **learning when to remember and learning when to forget**, through their forget gate weights.  
+On the other hand, the more time passes, the less likely it becomes that the next output depends on a very old input. This time dependency distance itself is as well a contextual information to be learned. LSTM networks manage this by **learning when to remember and when to forget**, through their forget gate weights. In a simple way, if the forget gate is just a multiplicative factor of 0.9, within 10 time steps this factor becomes: 0.9^10=0.348 (or 65% of information forgotten), and within 30 steps -> 0.04 (96% forgotten). 
 
 {{< figure src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Long_Short_Term_Memory.png/300px-Long_Short_Term_Memory.png" title="LSTM internal wiring showing the forget gate" >}}
 
-
-In this post, I won't go through the technical details of how LSTM are implemented. [This blog post] (http://colah.github.io/posts/2015-08-Understanding-LSTMs/) explains very nicely the rational behind them. Instead I will show the different applications usages. 
-
+In this post, I won't go more than this about the technical details of LSTM. [This blog post instead] (http://colah.github.io/posts/2015-08-Understanding-LSTMs/) explains very nicely their mechanics. Instead I will present here a compilation of the different applications of LSTM. 
 
 
 # Examples of LSTM usage
 
 ## Text Generation
-Generating a text, like this one, can be seen as an LSTM task where each letter is generated taking into account all the previously generated letters. [Andrej Karpathy,](http://karpathy.github.io/2015/05/21/rnn-effectiveness/) shows different examples of text generation by LSTM depending on the training set. These are some of the automatically generated texts. Notice how it learns the structures  
+Generating a text, like this one, can be converted to an LSTM task where each letter is generated taking into account all the previously generated letters. [Andrej Karpathy,](http://karpathy.github.io/2015/05/21/rnn-effectiveness/) shows different examples of text generation by LSTM depending on the training set you feed them. These are some of the automatically generated examples: 
 
 ### Shakespear: 
 ```
@@ -92,13 +91,13 @@ Thank you. God bless you. Good morning, everybody. And May God loss man. Thank y
 
 ## Handwriting recognition
 
-This is animation from Alex Graves, showing an LSTM network performing in live:
+This is an animation from Alex Graves, showing an LSTM network performing in live a handwriting recognition:
 
 {{< youtube mLxsbWAYIpw >}}
 
-- Row 1: Shows the letters that are recognised (outputs of the network)
+- Row 1: Shows the letters that are recognised (**outputs** of the network)
 - Row 2: Shows the states of the memory cells (Notice how they reset when a character is recognised)
-- Row 3: Shows the writing as it's being analyzed by the LSTM (inputs of the network)
+- Row 3: Shows the writing as it's being analysed by the LSTM (**inputs** of the network)
 - Row 4: Shows the gradient backpropagated to the inputs from the most active characters. This reflects the **forget** effect. 
 
 
@@ -112,11 +111,11 @@ As an inverted experiment, here are some handwriting generated by LSTM.
 
 
 
-For a live demo, and to automatically generate a handwriting text yourself, check here: [http://www.cs.toronto.edu/~graves/handwriting.html](http://www.cs.toronto.edu/~graves/handwriting.html)
+For a live demo, and to automatically generate a LSTM-'hand'writing text yourself, visit this page: [http://www.cs.toronto.edu/~graves/handwriting.html](http://www.cs.toronto.edu/~graves/handwriting.html)
 
 
 ## Music generation
-Since music, just like text, is a sequence of notes (instead of characters), it can be generated by LSTM as well by taking into account the previously played notes. [Here](http://www.hexahedria.com/2015/08/03/composing-music-with-recurrent-neural-networks/) you can find an interesting explanation of how to train LSTM on midi files. Otherwise, you can enjoy the following generated music:
+Since music, just like text, is a sequence of notes (instead of characters), it can be generated as well by LSTM by taking into account the previously played notes (or combinations of notes). [Here](http://www.hexahedria.com/2015/08/03/composing-music-with-recurrent-neural-networks/) you can find an interesting explanation of how to train LSTM on midi files. Otherwise, you can enjoy the following generated music (from a classical music training set):
 
 <audio controls="">
     <source src="./nnet_music_2.mp3" type="audio/mpeg" />
@@ -132,8 +131,8 @@ Since music, just like text, is a sequence of notes (instead of characters), it 
 
 
 ## Language Translation
-Language translation can be seen as a [sequence-to-sequence](https://www.tensorflow.org/tutorials/seq2seq) mapping. A group of researchers, in collaboration with NVidia published details on how to tame LSTM for such task ([part1](https://devblogs.nvidia.com/parallelforall/introduction-neural-machine-translation-with-gpus/), [part2] (https://devblogs.nvidia.com/parallelforall/introduction-neural-machine-translation-gpus-part-2/), [part 3] (https://devblogs.nvidia.com/parallelforall/introduction-neural-machine-translation-gpus-part-3/)).
-In a nutshell, they created a neural net with an encoder to compress the text to a higher abstract vectorial representation and a decoder to decode to the target language. 
+Language translation can be seen as a [sequence-to-sequence](https://www.tensorflow.org/tutorials/seq2seq) mapping. A group of researchers, in collaboration with Nvidia published details on how to tame LSTM for such task ([part1](https://devblogs.nvidia.com/parallelforall/introduction-neural-machine-translation-with-gpus/), [part2] (https://devblogs.nvidia.com/parallelforall/introduction-neural-machine-translation-gpus-part-2/), [part 3] (https://devblogs.nvidia.com/parallelforall/introduction-neural-machine-translation-gpus-part-3/)).
+In a nutshell, they created a neural net with an encoder to compress the text to a higher abstract vectorial representation and a decoder to decode it back to the target language. 
 
 {{< figure src="https://devblogs.nvidia.com/parallelforall/wp-content/uploads/2015/06/figure1_encoder-decoder1-300x126.png" title="Machine translation encoder/decoder architecture" >}}
 
