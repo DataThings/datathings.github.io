@@ -29,14 +29,35 @@ Although in both cases, the current last input was number &lt;strong&gt;8&lt;/st
 
 &lt;p&gt;LSTM networks manage to achieve this goal by integrating a &lt;strong&gt;loop&lt;/strong&gt; that allows information to be passed from one step of the network to the next. These loops make recurrent neural networks seem magical. But if we think about it for a second, as you read this post, you understand each word based on your understanding of the previous words. You don’t throw everything away and start thinking from scratch again at each word.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png&#34; alt=&#34;LSTM unrolled&#34; /&gt;
-&lt;em&gt;LSTM loop unrolled, showing how LSTM networks can pass contextual information through time.&lt;/em&gt;&lt;/p&gt;
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;LSTM loop unrolled&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
 
 &lt;p&gt;On the other hand, the more time passes, the less likely it becomes that the next event depends on a very old one. This time dependency distance itself is as well a contextual information. LSTM networks achieve this by &lt;strong&gt;learning when to remember and learning when to forget&lt;/strong&gt;, through their forget gate weights.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Long_Short_Term_Memory.png/300px-Long_Short_Term_Memory.png&#34; alt=&#34;Inside of LSTM&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;LSTM internal wiring - Ct is the memory cell, Ft is the forget gate that drives the memory cell to forget the past.&lt;/em&gt;&lt;/p&gt;
+&lt;figure &gt;
+    
+        &lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Long_Short_Term_Memory.png/300px-Long_Short_Term_Memory.png&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;LSTM internal wiring showing the forget gate&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
 
 &lt;p&gt;In this post, I won&amp;rsquo;t go through the technical details of how LSTM are implemented. &lt;a href=&#34;http://colah.github.io/posts/2015-08-Understanding-LSTMs/&#34;&gt;This blog post&lt;/a&gt; explains very nicely the rational behind them. Instead I will show the different applications usages.&lt;/p&gt;
 
@@ -86,6 +107,19 @@ in western [[Scotland]], near Italy to the conquest of India with the conflict.
   &amp;lt;/revision&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;h3 id=&#34;obama&#34;&gt;Obama:&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;SEED: War on terror
+Good everybody. Thank you very much. God bless the United States of America, and has already began with the world’s gathering their health insurance. 
+It’s about hard-earned for our efforts that are not continued.
+We are all the assumptionion to the streets of the Americas that we are still for everybody and destruction. 
+We are doing a lot of this. 
+I know that someone would be prefered to their children to take a million insurance company. We’re watching their people and continued to find ourselves with Republicans — to give up on these challenges and despite the challenges of our country. In the last two years, we must recognise that our borders have access from the world. We’re continuing that this day of things that the United States will clean up it´s allies and prosperity to stand up enough to be a sanctions that we made their faith, and for the country of the Internet to Osama bin Laden.
+Thank you. God bless you. Good morning, everybody. And May God loss man. Thank you very much. Thank you very much, everybody.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://medium.com/@samim/obama-rnn-machine-generated-political-speeches-c8abd18a2ea0#.cg5rfkfz5&#34;&gt;Reference here&lt;/a&gt;&lt;/p&gt;
+
 &lt;h2 id=&#34;handwriting-recognition&#34;&gt;Handwriting recognition&lt;/h2&gt;
 
 &lt;p&gt;This is animation from Alex Graves, showing an LSTM network performing in live:&lt;/p&gt;
@@ -111,22 +145,75 @@ in western [[Scotland]], near Italy to the conquest of India with the conflict.
 &lt;img src=&#34;./lstmgen2.jpeg&#34; alt=&#34;LSTM gen&#34; /&gt;
 &lt;img src=&#34;./datathings.jpeg&#34; alt=&#34;LSTM gen&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;For a live demo, and to automatically generate a handwriting text, check here: &lt;a href=&#34;http://www.cs.toronto.edu/~graves/handwriting.html&#34;&gt;http://www.cs.toronto.edu/~graves/handwriting.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;For a live demo, and to automatically generate a handwriting text yourself, check here: &lt;a href=&#34;http://www.cs.toronto.edu/~graves/handwriting.html&#34;&gt;http://www.cs.toronto.edu/~graves/handwriting.html&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;music-generation&#34;&gt;Music generation&lt;/h2&gt;
 
+&lt;p&gt;Since music, just like text, is a sequence of notes (instead of characters), it can be generated by LSTM as well by taking into account the previously played notes. &lt;a href=&#34;http://www.hexahedria.com/2015/08/03/composing-music-with-recurrent-neural-networks/&#34;&gt;Here&lt;/a&gt; you can find an interesting explanation of how to train LSTM on midi files. Otherwise, you can enjoy the following generated music:&lt;/p&gt;
+
+&lt;p&gt;&lt;audio controls=&#34;&#34;&gt;
+    &lt;source src=&#34;./nnet_music_2.mp3&#34; type=&#34;audio/mpeg&#34; /&gt;
+&lt;/audio&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;audio controls=&#34;&#34;&gt;
+    &lt;source src=&#34;./nnet_music_3.mp3&#34; type=&#34;audio/mpeg&#34; /&gt;
+&lt;/audio&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;audio controls=&#34;&#34;&gt;
+    &lt;source src=&#34;./nnet_music_9.mp3&#34; type=&#34;audio/mpeg&#34; /&gt;
+&lt;/audio&gt;&lt;/p&gt;
+
 &lt;h2 id=&#34;language-translation&#34;&gt;Language Translation&lt;/h2&gt;
+
+&lt;p&gt;Language translation can be seen as a &lt;a href=&#34;https://www.tensorflow.org/tutorials/seq2seq&#34;&gt;sequence-to-sequence&lt;/a&gt; mapping. A group of researchers, in collaboration with NVidia published details on how to tame LSTM for such task (&lt;a href=&#34;https://devblogs.nvidia.com/parallelforall/introduction-neural-machine-translation-with-gpus/&#34;&gt;part1&lt;/a&gt;, &lt;a href=&#34;https://devblogs.nvidia.com/parallelforall/introduction-neural-machine-translation-gpus-part-2/&#34;&gt;part2&lt;/a&gt;, &lt;a href=&#34;https://devblogs.nvidia.com/parallelforall/introduction-neural-machine-translation-gpus-part-3/&#34;&gt;part 3&lt;/a&gt;).
+In a nutshell, they created a neural net with an encoder to compress the text to a higher abstract vectorial representation and a decoder to decode to the target language.&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;https://devblogs.nvidia.com/parallelforall/wp-content/uploads/2015/06/figure1_encoder-decoder1-300x126.png&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;Machine translation encoder/decoder architecture&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;https://devblogs.nvidia.com/parallelforall/wp-content/uploads/2015/07/Figure3_attention_1-624x352.png&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;h4&gt;English to french translation by NVidia&lt;/h4&gt;
+        
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
 
 &lt;h2 id=&#34;image-captioning&#34;&gt;Image captioning&lt;/h2&gt;
 
-&lt;h2 id=&#34;forecasting&#34;&gt;Forecasting&lt;/h2&gt;
+&lt;p&gt;Finally, the most impressive and magical use of LSTM networks is to generate from an input image, a text caption describing the contents of the image. Microsoft research is progressing a lot in this area. Here are some sample demos of their results:
+&lt;img src=&#34;./microsoft2.png&#34; alt=&#34;&#34; /&gt;
+&lt;img src=&#34;./microsoft1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;#References
-- &lt;a href=&#34;http://colah.github.io/posts/2015-08-Understanding-LSTMs/&#34;&gt;Understanding LSTM&lt;/a&gt;
-- &lt;a href=&#34;https://amundtveit.com/2016/11/12/deep-learning-with-recurrentrecursive-neural-networks-rnn-iclr-2017-discoveries/&#34;&gt;Combination of research papers&lt;/a&gt;
-- &lt;a href=&#34;http://karpathy.github.io/2015/05/21/rnn-effectiveness/&#34;&gt;RNN effectiveness&lt;/a&gt;
-- &lt;a href=&#34;https://deeplearning4j.org/lstm.html&#34;&gt;Deep learning 4j&lt;/a&gt;
-- &lt;a href=&#34;http://nikhilbuduma.com/2015/01/11/a-deep-dive-into-recurrent-neural-networks/&#34;&gt;Handwriting recognition&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;You can try it yourself here: &lt;a href=&#34;https://www.captionbot.ai/&#34;&gt;https://www.captionbot.ai/&lt;/a&gt;. Have fun!&lt;/p&gt;
+
+&lt;h1 id=&#34;references&#34;&gt;References&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://colah.github.io/posts/2015-08-Understanding-LSTMs/&#34;&gt;Understanding LSTM&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://amundtveit.com/2016/11/12/deep-learning-with-recurrentrecursive-neural-networks-rnn-iclr-2017-discoveries/&#34;&gt;Combination of research papers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://karpathy.github.io/2015/05/21/rnn-effectiveness/&#34;&gt;RNN effectiveness&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://deeplearning4j.org/lstm.html&#34;&gt;Deep learning 4j&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://nikhilbuduma.com/2015/01/11/a-deep-dive-into-recurrent-neural-networks/&#34;&gt;Handwriting recognition&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.hexahedria.com/2015/08/03/composing-music-with-recurrent-neural-networks/&#34;&gt;Music generation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
