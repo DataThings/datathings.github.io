@@ -19,15 +19,17 @@
 
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Long_short-term_memory&#34;&gt;LSTM Neural Networks&lt;/a&gt;, which stand for &lt;strong&gt;L&lt;/strong&gt;ong &lt;strong&gt;S&lt;/strong&gt;hort-&lt;strong&gt;T&lt;/strong&gt;erm &lt;strong&gt;M&lt;/strong&gt;emory, are a particular type of recurrent neural networks that got lot of attention the last few years within the machine learning community.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Long_short-term_memory&#34;&gt;LSTM Neural Networks&lt;/a&gt;, which stand for &lt;strong&gt;L&lt;/strong&gt;ong &lt;strong&gt;S&lt;/strong&gt;hort-&lt;strong&gt;T&lt;/strong&gt;erm &lt;strong&gt;M&lt;/strong&gt;emory, are a particular type of recurrent neural networks that got lot of attention recently within the machine learning community.&lt;/p&gt;
 
 &lt;p&gt;In a simple way, LSTM networks have some internal &lt;strong&gt;contextual state cells&lt;/strong&gt; that act as long-term or short-term memory cells.
-The output of the LSTM network is &lt;strong&gt;modulated&lt;/strong&gt; by the state of these memory cells. This is a very important property when we want the prediction of the neural network to depend on the &lt;strong&gt;historical context&lt;/strong&gt; of inputs, rather than only on the last input.&lt;/p&gt;
+The output of the LSTM network is &lt;strong&gt;modulated&lt;/strong&gt; by the state of these cells. This is a very important property when we need the prediction of the neural network to depend on the &lt;strong&gt;historical context&lt;/strong&gt; of inputs, rather than only on the very last input.&lt;/p&gt;
 
-&lt;p&gt;As a simple example, consider that we want to predict the next number of the following sequence:  6 -&amp;gt; 7 -&amp;gt; 8 -&amp;gt; ?. We would like to have the prediction to be &lt;strong&gt;9&lt;/strong&gt;. However, if we provide this sequence: 2 -&amp;gt; 4 -&amp;gt; 8 -&amp;gt; ?, we would like to get the prediction of &lt;strong&gt;16&lt;/strong&gt;.
-Although in both cases, the current last input was number &lt;strong&gt;8&lt;/strong&gt;, the prediction outcome should be different (because we want take into account the contextual information of previous values and not only the last one).&lt;/p&gt;
+&lt;p&gt;As a simple example, consider that we want to predict the next number of the following sequence:  6 -&amp;gt; 7 -&amp;gt; 8 -&amp;gt; ?. We would like to have the next output to be &lt;strong&gt;9&lt;/strong&gt; (x+1). However, if we provide this sequence: 2 -&amp;gt; 4 -&amp;gt; 8 -&amp;gt; ?, we would like to get &lt;strong&gt;16&lt;/strong&gt; (2x).
+Although in both cases, the current last input was number &lt;strong&gt;8&lt;/strong&gt;, the prediction outcome should be different (when we take into account the contextual information of previous values and not only the last one).&lt;/p&gt;
 
-&lt;p&gt;LSTM networks manage to achieve this goal by integrating a &lt;strong&gt;loop&lt;/strong&gt; that allows information to be passed from one step of the network to the next. These loops make recurrent neural networks seem magical. But if we think about it for a second, as you read this post, you understand each word based on your understanding of the previous words. You don’t throw everything away and start thinking from scratch again at each word.&lt;/p&gt;
+&lt;h1 id=&#34;how-they-work&#34;&gt;How they work&lt;/h1&gt;
+
+&lt;p&gt;LSTM networks manage to keep contextual information of inputs by integrating a &lt;strong&gt;loop&lt;/strong&gt; that allows information to flow from one step to the next. These loops make recurrent neural networks seem magical. But if we think about it for a second, as you are reading this post, you are understanding each word based on your understanding of the previous words. You don’t throw everything away and start thinking from scratch at each word. Similarly, LSTM predictions are always conditionned by the past experience of the network&amp;rsquo;s inputs.&lt;/p&gt;
 
 
 &lt;figure &gt;
@@ -43,7 +45,7 @@ Although in both cases, the current last input was number &lt;strong&gt;8&lt;/st
 &lt;/figure&gt;
 
 
-&lt;p&gt;On the other hand, the more time passes, the less likely it becomes that the next event depends on a very old one. This time dependency distance itself is as well a contextual information. LSTM networks achieve this by &lt;strong&gt;learning when to remember and learning when to forget&lt;/strong&gt;, through their forget gate weights.&lt;/p&gt;
+&lt;p&gt;On the other hand, the more time passes, the less likely it becomes that the next output depends on a very old input. This time dependency distance itself is as well a contextual information to be learned. LSTM networks manage this by &lt;strong&gt;learning when to remember and when to forget&lt;/strong&gt;, through their forget gate weights. In a simple way, if the forget gate is just a multiplicative factor of 0.9, within 10 time steps this factor becomes: 0.9^10=0.348 (or 65% of information forgotten), and within 30 steps -&amp;gt; 0.04 (96% forgotten).&lt;/p&gt;
 
 
 &lt;figure &gt;
@@ -59,13 +61,13 @@ Although in both cases, the current last input was number &lt;strong&gt;8&lt;/st
 &lt;/figure&gt;
 
 
-&lt;p&gt;In this post, I won&amp;rsquo;t go through the technical details of how LSTM are implemented. &lt;a href=&#34;http://colah.github.io/posts/2015-08-Understanding-LSTMs/&#34;&gt;This blog post&lt;/a&gt; explains very nicely the rational behind them. Instead I will show the different applications usages.&lt;/p&gt;
+&lt;p&gt;In this post, I won&amp;rsquo;t go more than this about the technical details of LSTM. &lt;a href=&#34;http://colah.github.io/posts/2015-08-Understanding-LSTMs/&#34;&gt;This blog post instead&lt;/a&gt; explains very nicely their mechanics. Instead I will present here a compilation of the different applications of LSTM.&lt;/p&gt;
 
 &lt;h1 id=&#34;examples-of-lstm-usage&#34;&gt;Examples of LSTM usage&lt;/h1&gt;
 
 &lt;h2 id=&#34;text-generation&#34;&gt;Text Generation&lt;/h2&gt;
 
-&lt;p&gt;Generating a text, like this one, can be seen as an LSTM task where each letter is generated taking into account all the previously generated letters. &lt;a href=&#34;http://karpathy.github.io/2015/05/21/rnn-effectiveness/&#34;&gt;Andrej Karpathy,&lt;/a&gt; shows different examples of text generation by LSTM depending on the training set. These are some of the automatically generated texts. Notice how it learns the structures&lt;/p&gt;
+&lt;p&gt;Generating a text, like this one, can be converted to an LSTM task where each letter is generated taking into account all the previously generated letters. &lt;a href=&#34;http://karpathy.github.io/2015/05/21/rnn-effectiveness/&#34;&gt;Andrej Karpathy,&lt;/a&gt; shows different examples of text generation by LSTM depending on the training set you feed them. These are some of the automatically generated examples:&lt;/p&gt;
 
 &lt;h3 id=&#34;shakespear&#34;&gt;Shakespear:&lt;/h3&gt;
 
@@ -122,7 +124,7 @@ Thank you. God bless you. Good morning, everybody. And May God loss man. Thank y
 
 &lt;h2 id=&#34;handwriting-recognition&#34;&gt;Handwriting recognition&lt;/h2&gt;
 
-&lt;p&gt;This is animation from Alex Graves, showing an LSTM network performing in live:&lt;/p&gt;
+&lt;p&gt;This is an animation from Alex Graves, showing an LSTM network performing in live a handwriting recognition:&lt;/p&gt;
 
 
 &lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
@@ -131,9 +133,9 @@ Thank you. God bless you. Good morning, everybody. And May God loss man. Thank y
 
 
 &lt;ul&gt;
-&lt;li&gt;Row 1: Shows the letters that are recognised (outputs of the network)&lt;/li&gt;
+&lt;li&gt;Row 1: Shows the letters that are recognised (&lt;strong&gt;outputs&lt;/strong&gt; of the network)&lt;/li&gt;
 &lt;li&gt;Row 2: Shows the states of the memory cells (Notice how they reset when a character is recognised)&lt;/li&gt;
-&lt;li&gt;Row 3: Shows the writing as it&amp;rsquo;s being analyzed by the LSTM (inputs of the network)&lt;/li&gt;
+&lt;li&gt;Row 3: Shows the writing as it&amp;rsquo;s being analysed by the LSTM (&lt;strong&gt;inputs&lt;/strong&gt; of the network)&lt;/li&gt;
 &lt;li&gt;Row 4: Shows the gradient backpropagated to the inputs from the most active characters. This reflects the &lt;strong&gt;forget&lt;/strong&gt; effect.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -145,11 +147,11 @@ Thank you. God bless you. Good morning, everybody. And May God loss man. Thank y
 &lt;img src=&#34;./lstmgen2.jpeg&#34; alt=&#34;LSTM gen&#34; /&gt;
 &lt;img src=&#34;./datathings.jpeg&#34; alt=&#34;LSTM gen&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;For a live demo, and to automatically generate a handwriting text yourself, check here: &lt;a href=&#34;http://www.cs.toronto.edu/~graves/handwriting.html&#34;&gt;http://www.cs.toronto.edu/~graves/handwriting.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;For a live demo, and to automatically generate a LSTM-&amp;lsquo;hand&amp;rsquo;writing text yourself, visit this page: &lt;a href=&#34;http://www.cs.toronto.edu/~graves/handwriting.html&#34;&gt;http://www.cs.toronto.edu/~graves/handwriting.html&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;music-generation&#34;&gt;Music generation&lt;/h2&gt;
 
-&lt;p&gt;Since music, just like text, is a sequence of notes (instead of characters), it can be generated by LSTM as well by taking into account the previously played notes. &lt;a href=&#34;http://www.hexahedria.com/2015/08/03/composing-music-with-recurrent-neural-networks/&#34;&gt;Here&lt;/a&gt; you can find an interesting explanation of how to train LSTM on midi files. Otherwise, you can enjoy the following generated music:&lt;/p&gt;
+&lt;p&gt;Since music, just like text, is a sequence of notes (instead of characters), it can be generated as well by LSTM by taking into account the previously played notes (or combinations of notes). &lt;a href=&#34;http://www.hexahedria.com/2015/08/03/composing-music-with-recurrent-neural-networks/&#34;&gt;Here&lt;/a&gt; you can find an interesting explanation of how to train LSTM on midi files. Otherwise, you can enjoy the following generated music (from a classical music training set):&lt;/p&gt;
 
 &lt;p&gt;&lt;audio controls=&#34;&#34;&gt;
     &lt;source src=&#34;./nnet_music_2.mp3&#34; type=&#34;audio/mpeg&#34; /&gt;
@@ -165,8 +167,8 @@ Thank you. God bless you. Good morning, everybody. And May God loss man. Thank y
 
 &lt;h2 id=&#34;language-translation&#34;&gt;Language Translation&lt;/h2&gt;
 
-&lt;p&gt;Language translation can be seen as a &lt;a href=&#34;https://www.tensorflow.org/tutorials/seq2seq&#34;&gt;sequence-to-sequence&lt;/a&gt; mapping. A group of researchers, in collaboration with NVidia published details on how to tame LSTM for such task (&lt;a href=&#34;https://devblogs.nvidia.com/parallelforall/introduction-neural-machine-translation-with-gpus/&#34;&gt;part1&lt;/a&gt;, &lt;a href=&#34;https://devblogs.nvidia.com/parallelforall/introduction-neural-machine-translation-gpus-part-2/&#34;&gt;part2&lt;/a&gt;, &lt;a href=&#34;https://devblogs.nvidia.com/parallelforall/introduction-neural-machine-translation-gpus-part-3/&#34;&gt;part 3&lt;/a&gt;).
-In a nutshell, they created a neural net with an encoder to compress the text to a higher abstract vectorial representation and a decoder to decode to the target language.&lt;/p&gt;
+&lt;p&gt;Language translation can be seen as a &lt;a href=&#34;https://www.tensorflow.org/tutorials/seq2seq&#34;&gt;sequence-to-sequence&lt;/a&gt; mapping. A group of researchers, in collaboration with Nvidia published details on how to tame LSTM for such task (&lt;a href=&#34;https://devblogs.nvidia.com/parallelforall/introduction-neural-machine-translation-with-gpus/&#34;&gt;part1&lt;/a&gt;, &lt;a href=&#34;https://devblogs.nvidia.com/parallelforall/introduction-neural-machine-translation-gpus-part-2/&#34;&gt;part2&lt;/a&gt;, &lt;a href=&#34;https://devblogs.nvidia.com/parallelforall/introduction-neural-machine-translation-gpus-part-3/&#34;&gt;part 3&lt;/a&gt;).
+In a nutshell, they created a neural net with an encoder to compress the text to a higher abstract vectorial representation and a decoder to decode it back to the target language.&lt;/p&gt;
 
 
 &lt;figure &gt;
