@@ -9,3 +9,7 @@ disqusShortname = ""
 publishDir = "public/blog"
 [social]
     twitter  = "https://twitter.com/datathingslu"
+
+[taxonomies]
+    category = "categories"
+    tag = "tags"
