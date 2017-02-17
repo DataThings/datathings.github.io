@@ -83,7 +83,7 @@ in western [[Scotland]], near Italy to the conquest of India with the conflict.
 
 This is animation from Alex Graves, showing an LSTM network performing in live:
 
-https://youtu.be/mLxsbWAYIpw
+{{< youtube mLxsbWAYIpw >}}
 
 - Row 1: Shows the letters that are recognised (outputs of the network)
 - Row 2: Shows the states of the memory cells (Notice how they reset when a character is recognised)
