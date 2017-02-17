@@ -6,8 +6,125 @@
     <description>Recent content in Posts on The DataThings Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 Feb 2017 17:07:36 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 17 Feb 2017 12:56:49 +0100</lastBuildDate>
     <atom:link href="http://datathings.com/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>The magic of LSTM neural networks</title>
+      <link>http://datathings.com/blog/post/lstm/lstm/</link>
+      <pubDate>Fri, 17 Feb 2017 12:56:49 +0100</pubDate>
+      
+      <guid>http://datathings.com/blog/post/lstm/lstm/</guid>
+      <description>
+
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Long_short-term_memory&#34;&gt;LSTM Neural Networks&lt;/a&gt;, which stand for &lt;strong&gt;L&lt;/strong&gt;ong &lt;strong&gt;S&lt;/strong&gt;hort-&lt;strong&gt;T&lt;/strong&gt;erm &lt;strong&gt;M&lt;/strong&gt;emory, are a particular type of recurrent neural networks that got lot of attention the last few years within the machine learning community.&lt;/p&gt;
+
+&lt;p&gt;In a simple way, LSTM networks have some internal &lt;strong&gt;contextual state cells&lt;/strong&gt; that act as long-term or short-term memory cells.
+The output of the LSTM network is &lt;strong&gt;modulated&lt;/strong&gt; by the state of these memory cells. This is a very important property when we want the prediction of the neural network to depend on the &lt;strong&gt;historical context&lt;/strong&gt; of inputs, rather than only on the last input.&lt;/p&gt;
+
+&lt;p&gt;As a simple example, consider that we want to predict the next number of the following sequence:  6 -&amp;gt; 7 -&amp;gt; 8 -&amp;gt; ?. We would like to have the prediction to be &lt;strong&gt;9&lt;/strong&gt;. However, if we provide this sequence: 2 -&amp;gt; 4 -&amp;gt; 8 -&amp;gt; ?, we would like to get the prediction of &lt;strong&gt;16&lt;/strong&gt;.
+Although in both cases, the current last input was number &lt;strong&gt;8&lt;/strong&gt;, the prediction outcome should be different (because we want take into account the contextual information of previous values and not only the last one).&lt;/p&gt;
+
+&lt;p&gt;LSTM networks manage to achieve this goal by integrating a &lt;strong&gt;loop&lt;/strong&gt; that allows information to be passed from one step of the network to the next. These loops make recurrent neural networks seem magical. But if we think about it for a second, as you read this post, you understand each word based on your understanding of the previous words. You don’t throw everything away and start thinking from scratch again at each word.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png&#34; alt=&#34;LSTM unrolled&#34; /&gt;
+&lt;em&gt;LSTM loop unrolled, showing how LSTM networks can pass contextual information through time.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;On the other hand, the more time passes, the less likely it becomes that the next event depends on a very old one. This time dependency distance itself is as well a contextual information. LSTM networks achieve this by &lt;strong&gt;learning when to remember and learning when to forget&lt;/strong&gt;, through their forget gate weights.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Long_Short_Term_Memory.png/300px-Long_Short_Term_Memory.png&#34; alt=&#34;Inside of LSTM&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;LSTM internal wiring - Ct is the memory cell, Ft is the forget gate that drives the memory cell to forget the past.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;In this post, I won&amp;rsquo;t go through the technical details of how LSTM are implemented. &lt;a href=&#34;http://colah.github.io/posts/2015-08-Understanding-LSTMs/&#34;&gt;This blog post&lt;/a&gt; explains very nicely the rational behind them. Instead I will show the different applications usages.&lt;/p&gt;
+
+&lt;h1 id=&#34;examples-of-lstm-usage&#34;&gt;Examples of LSTM usage&lt;/h1&gt;
+
+&lt;h2 id=&#34;text-generation&#34;&gt;Text Generation&lt;/h2&gt;
+
+&lt;p&gt;Generating a text, like this one, can be seen as an LSTM task where each letter is generated taking into account all the previously generated letters. &lt;a href=&#34;http://karpathy.github.io/2015/05/21/rnn-effectiveness/&#34;&gt;Andrej Karpathy,&lt;/a&gt; shows different examples of text generation by LSTM depending on the training set. These are some of the automatically generated texts. Notice how it learns the structures&lt;/p&gt;
+
+&lt;h3 id=&#34;shakespear&#34;&gt;Shakespear:&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;PANDARUS:
+Alas, I think he shall be come approached and the day
+When little srain would be attain&#39;d into being never fed,
+And who is but a chain and subjects of his death,
+I should not sleep.
+
+Second Senator:
+They are away this miseries, produced upon my soul,
+Breaking and strongly should be buried, when I perish
+The earth and thoughts of many states.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;wikipedia&#34;&gt;Wikipedia:&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;Naturalism and decision for the majority of Arab countries&#39; capitalide was grounded
+by the Irish language by [[John Clair]], [[An Imperial Japanese Revolt]], associated 
+with Guangzham&#39;s sovereignty. His generals were the powerful ruler of the Portugal 
+in the [[Protestant Immineners]], which could be said to be directly in Cantonese 
+Communication, which followed a ceremony and set inspired prison, training. The 
+emperor travelled back to [[Antioch, Perth, October 25|21]] to note, the Kingdom 
+of Costa Rica, unsuccessful fashioned the [[Thrales]], [[Cynth&#39;s Dajoard]], known 
+in western [[Scotland]], near Italy to the conquest of India with the conflict.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;xml&#34;&gt;XML:&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt; &amp;lt;revision&amp;gt;
+    &amp;lt;id&amp;gt;15900676&amp;lt;/id&amp;gt;
+    &amp;lt;timestamp&amp;gt;2002-08-03T18:14:12Z&amp;lt;/timestamp&amp;gt;
+    &amp;lt;contributor&amp;gt;
+      &amp;lt;username&amp;gt;Paris&amp;lt;/username&amp;gt;
+      &amp;lt;id&amp;gt;23&amp;lt;/id&amp;gt;
+    &amp;lt;/contributor&amp;gt;
+    &amp;lt;minor /&amp;gt;
+    &amp;lt;comment&amp;gt;Automated conversion&amp;lt;/comment&amp;gt;
+  &amp;lt;/revision&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;handwriting-recognition&#34;&gt;Handwriting recognition&lt;/h2&gt;
+
+&lt;p&gt;This is animation from Alex Graves, showing an LSTM network performing in live:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://youtu.be/mLxsbWAYIpw&#34;&gt;https://youtu.be/mLxsbWAYIpw&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Row 1: Shows the letters that are recognised (outputs of the network)&lt;/li&gt;
+&lt;li&gt;Row 2: Shows the states of the memory cells (Notice how they reset when a character is recognised)&lt;/li&gt;
+&lt;li&gt;Row 3: Shows the writing as it&amp;rsquo;s being analyzed by the LSTM (inputs of the network)&lt;/li&gt;
+&lt;li&gt;Row 4: Shows the gradient backpropagated to the inputs from the most active characters. This reflects the &lt;strong&gt;forget&lt;/strong&gt; effect.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;handwriting-generation&#34;&gt;Handwriting generation&lt;/h2&gt;
+
+&lt;p&gt;As an inverted experiment, here are some handwriting generated by LSTM.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;./writing.jpeg&#34; alt=&#34;LSTM gen&#34; /&gt;
+&lt;img src=&#34;./lstmgen2.jpeg&#34; alt=&#34;LSTM gen&#34; /&gt;
+&lt;img src=&#34;./datathings.jpeg&#34; alt=&#34;LSTM gen&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For a live demo, and to automatically generate a handwriting text, check here: &lt;a href=&#34;http://www.cs.toronto.edu/~graves/handwriting.html&#34;&gt;http://www.cs.toronto.edu/~graves/handwriting.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;music-generation&#34;&gt;Music generation&lt;/h2&gt;
+
+&lt;h2 id=&#34;language-translation&#34;&gt;Language Translation&lt;/h2&gt;
+
+&lt;h2 id=&#34;image-captioning&#34;&gt;Image captioning&lt;/h2&gt;
+
+&lt;h2 id=&#34;forecasting&#34;&gt;Forecasting&lt;/h2&gt;
+
+&lt;p&gt;#References
+- &lt;a href=&#34;http://colah.github.io/posts/2015-08-Understanding-LSTMs/&#34;&gt;Understanding LSTM&lt;/a&gt;
+- &lt;a href=&#34;https://amundtveit.com/2016/11/12/deep-learning-with-recurrentrecursive-neural-networks-rnn-iclr-2017-discoveries/&#34;&gt;Combination of research papers&lt;/a&gt;
+- &lt;a href=&#34;http://karpathy.github.io/2015/05/21/rnn-effectiveness/&#34;&gt;RNN effectiveness&lt;/a&gt;
+- &lt;a href=&#34;https://deeplearning4j.org/lstm.html&#34;&gt;Deep learning 4j&lt;/a&gt;
+- &lt;a href=&#34;http://nikhilbuduma.com/2015/01/11/a-deep-dive-into-recurrent-neural-networks/&#34;&gt;Handwriting recognition&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Say Hello to DataThings blog</title>

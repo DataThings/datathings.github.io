@@ -1,0 +1,281 @@
+    <!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		
+		<meta name="generator" content="Hugo 0.18.1" />
+		<title>The magic of LSTM neural networks &middot; The DataThings Blog</title>
+		<link rel="shortcut icon" href="http://datathings.com/blog/images/favicon.ico">
+		<link rel="stylesheet" href="http://datathings.com/blog/css/style.css">
+		<link rel="stylesheet" href="http://datathings.com/blog/css/highlight.css">
+		
+
+		
+		<link rel="stylesheet" href="http://datathings.com/blog/css/monosocialiconsfont.css">
+		
+
+		
+
+		<meta property="og:title" content="The magic of LSTM neural networks" />
+<meta property="og:description" content="Different showcases of LSTM neural network usages" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://datathings.com/blog/post/lstm/lstm/" />
+
+
+<meta property="og:updated_time" content="2017-02-17T12:56:49&#43;01:00"/>
+
+
+
+
+
+
+
+
+
+
+	    
+	    
+<meta itemprop="name" content="The magic of LSTM neural networks">
+<meta itemprop="description" content="Different showcases of LSTM neural network usages">
+
+
+<meta itemprop="dateModified" content="2017-02-17T12:56:49&#43;01:00" />
+<meta itemprop="wordCount" content="753">
+
+
+
+<meta itemprop="keywords" content="" />
+
+	    
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:title" content="The magic of LSTM neural networks"/>
+<meta name="twitter:description" content="Different showcases of LSTM neural network usages"/>
+<meta name="twitter:site" content="@https://twitter.com/datathingslu"/>
+
+
+	</head>
+
+    <body>
+       <nav class="main-nav">
+	
+	
+		<a href='http://datathings.com/blog/'> <span class="arrow">←</span>Home</a>
+	
+
+	
+		<a href='http://datathings.com/blog/about'>About</a>
+	
+
+	
+</nav>
+
+        <section id="wrapper">
+            <article class="post">
+                <header>
+                    <h1>The magic of LSTM neural networks</h1>
+                    <h2 class="headline">
+                    February 17, 2017
+                    <br>
+                    
+                    </h2>
+                </header>
+                <section id="post-body">
+                    
+
+<h1 id="introduction">Introduction</h1>
+
+<p><a href="https://en.wikipedia.org/wiki/Long_short-term_memory">LSTM Neural Networks</a>, which stand for <strong>L</strong>ong <strong>S</strong>hort-<strong>T</strong>erm <strong>M</strong>emory, are a particular type of recurrent neural networks that got lot of attention the last few years within the machine learning community.</p>
+
+<p>In a simple way, LSTM networks have some internal <strong>contextual state cells</strong> that act as long-term or short-term memory cells.
+The output of the LSTM network is <strong>modulated</strong> by the state of these memory cells. This is a very important property when we want the prediction of the neural network to depend on the <strong>historical context</strong> of inputs, rather than only on the last input.</p>
+
+<p>As a simple example, consider that we want to predict the next number of the following sequence:  6 -&gt; 7 -&gt; 8 -&gt; ?. We would like to have the prediction to be <strong>9</strong>. However, if we provide this sequence: 2 -&gt; 4 -&gt; 8 -&gt; ?, we would like to get the prediction of <strong>16</strong>.
+Although in both cases, the current last input was number <strong>8</strong>, the prediction outcome should be different (because we want take into account the contextual information of previous values and not only the last one).</p>
+
+<p>LSTM networks manage to achieve this goal by integrating a <strong>loop</strong> that allows information to be passed from one step of the network to the next. These loops make recurrent neural networks seem magical. But if we think about it for a second, as you read this post, you understand each word based on your understanding of the previous words. You don’t throw everything away and start thinking from scratch again at each word.</p>
+
+<p><img src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png" alt="LSTM unrolled" />
+<em>LSTM loop unrolled, showing how LSTM networks can pass contextual information through time.</em></p>
+
+<p>On the other hand, the more time passes, the less likely it becomes that the next event depends on a very old one. This time dependency distance itself is as well a contextual information. LSTM networks achieve this by <strong>learning when to remember and learning when to forget</strong>, through their forget gate weights.</p>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Long_Short_Term_Memory.png/300px-Long_Short_Term_Memory.png" alt="Inside of LSTM" /></p>
+
+<p><em>LSTM internal wiring - Ct is the memory cell, Ft is the forget gate that drives the memory cell to forget the past.</em></p>
+
+<p>In this post, I won&rsquo;t go through the technical details of how LSTM are implemented. <a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/">This blog post</a> explains very nicely the rational behind them. Instead I will show the different applications usages.</p>
+
+<h1 id="examples-of-lstm-usage">Examples of LSTM usage</h1>
+
+<h2 id="text-generation">Text Generation</h2>
+
+<p>Generating a text, like this one, can be seen as an LSTM task where each letter is generated taking into account all the previously generated letters. <a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/">Andrej Karpathy,</a> shows different examples of text generation by LSTM depending on the training set. These are some of the automatically generated texts. Notice how it learns the structures</p>
+
+<h3 id="shakespear">Shakespear:</h3>
+
+<pre><code>PANDARUS:
+Alas, I think he shall be come approached and the day
+When little srain would be attain'd into being never fed,
+And who is but a chain and subjects of his death,
+I should not sleep.
+
+Second Senator:
+They are away this miseries, produced upon my soul,
+Breaking and strongly should be buried, when I perish
+The earth and thoughts of many states.
+</code></pre>
+
+<h3 id="wikipedia">Wikipedia:</h3>
+
+<pre><code>Naturalism and decision for the majority of Arab countries' capitalide was grounded
+by the Irish language by [[John Clair]], [[An Imperial Japanese Revolt]], associated 
+with Guangzham's sovereignty. His generals were the powerful ruler of the Portugal 
+in the [[Protestant Immineners]], which could be said to be directly in Cantonese 
+Communication, which followed a ceremony and set inspired prison, training. The 
+emperor travelled back to [[Antioch, Perth, October 25|21]] to note, the Kingdom 
+of Costa Rica, unsuccessful fashioned the [[Thrales]], [[Cynth's Dajoard]], known 
+in western [[Scotland]], near Italy to the conquest of India with the conflict.
+</code></pre>
+
+<h3 id="xml">XML:</h3>
+
+<pre><code> &lt;revision&gt;
+    &lt;id&gt;15900676&lt;/id&gt;
+    &lt;timestamp&gt;2002-08-03T18:14:12Z&lt;/timestamp&gt;
+    &lt;contributor&gt;
+      &lt;username&gt;Paris&lt;/username&gt;
+      &lt;id&gt;23&lt;/id&gt;
+    &lt;/contributor&gt;
+    &lt;minor /&gt;
+    &lt;comment&gt;Automated conversion&lt;/comment&gt;
+  &lt;/revision&gt;
+</code></pre>
+
+<h2 id="handwriting-recognition">Handwriting recognition</h2>
+
+<p>This is animation from Alex Graves, showing an LSTM network performing in live:</p>
+
+<p><a href="https://youtu.be/mLxsbWAYIpw">https://youtu.be/mLxsbWAYIpw</a></p>
+
+<ul>
+<li>Row 1: Shows the letters that are recognised (outputs of the network)</li>
+<li>Row 2: Shows the states of the memory cells (Notice how they reset when a character is recognised)</li>
+<li>Row 3: Shows the writing as it&rsquo;s being analyzed by the LSTM (inputs of the network)</li>
+<li>Row 4: Shows the gradient backpropagated to the inputs from the most active characters. This reflects the <strong>forget</strong> effect.</li>
+</ul>
+
+<h2 id="handwriting-generation">Handwriting generation</h2>
+
+<p>As an inverted experiment, here are some handwriting generated by LSTM.</p>
+
+<p><img src="./writing.jpeg" alt="LSTM gen" />
+<img src="./lstmgen2.jpeg" alt="LSTM gen" />
+<img src="./datathings.jpeg" alt="LSTM gen" /></p>
+
+<p>For a live demo, and to automatically generate a handwriting text, check here: <a href="http://www.cs.toronto.edu/~graves/handwriting.html">http://www.cs.toronto.edu/~graves/handwriting.html</a></p>
+
+<h2 id="music-generation">Music generation</h2>
+
+<h2 id="language-translation">Language Translation</h2>
+
+<h2 id="image-captioning">Image captioning</h2>
+
+<h2 id="forecasting">Forecasting</h2>
+
+<p>#References
+- <a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/">Understanding LSTM</a>
+- <a href="https://amundtveit.com/2016/11/12/deep-learning-with-recurrentrecursive-neural-networks-rnn-iclr-2017-discoveries/">Combination of research papers</a>
+- <a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/">RNN effectiveness</a>
+- <a href="https://deeplearning4j.org/lstm.html">Deep learning 4j</a>
+- <a href="http://nikhilbuduma.com/2015/01/11/a-deep-dive-into-recurrent-neural-networks/">Handwriting recognition</a></p>
+
+                </section>
+            </article>
+            <footer id="post-meta" class="clearfix">
+                
+                        <img class="avatar" src="http://datathings.com/blog/images/datathings_logo.svg">
+                        <div>
+                            <span class="dark"></span>
+                            <span></span>
+                        </div>
+                    
+                <section id="sharing">
+                    <a class="twitter" href="https://twitter.com/intent/tweet?text=http%3a%2f%2fdatathings.com%2fblog%2fpost%2flstm%2flstm%2f - The%20magic%20of%20LSTM%20neural%20networks "><span class="icon-twitter"> Tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Share</span>
+</a>
+
+                </section>
+            </footer>
+
+            
+
+            <ul id="post-list" class="archive readmore">
+    <h3>Read more</h3>
+
+    
+    
+    
+        
+        <li>
+            <a href="http://datathings.com/blog/post/lstm/lstm/">The magic of LSTM neural networks<aside class="dates">Feb 17</aside></a>
+        </li>
+        
+   
+    
+        
+        <li>
+            <a href="http://datathings.com/blog/post/say-hello/">Say Hello to DataThings blog<aside class="dates">Feb 16</aside></a>
+        </li>
+        
+   
+</ul>
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    
+    <a class="symbol" href="https://twitter.com/datathingslu">
+        twitterbird
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+        © Copyright 2017 
+    
+    </p>
+</footer>
+
+        </section>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://datathings.com/blog/js/main.js"></script>
+<script src="http://datathings.com/blog/js/highlight.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+    </body>
+</html>
