@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on The DataThings Blog</title>
-    <link>http://datathings.com/blog/post/index.xml</link>
-    <description>Recent content in Posts on The DataThings Blog</description>
+    <title>Music Generation on The DataThings Blog</title>
+    <link>http://datathings.com/blog/tags/music-generation/index.xml</link>
+    <description>Recent content in Music Generation on The DataThings Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 Feb 2017 12:56:49 +0100</lastBuildDate>
-    <atom:link href="http://datathings.com/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://datathings.com/blog/tags/music-generation/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>The magic of LSTM neural networks</title>
@@ -216,16 +215,6 @@ In a nutshell, they created a neural net with an encoder to compress the text to
 &lt;li&gt;&lt;a href=&#34;http://nikhilbuduma.com/2015/01/11/a-deep-dive-into-recurrent-neural-networks/&#34;&gt;Handwriting recognition&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.hexahedria.com/2015/08/03/composing-music-with-recurrent-neural-networks/&#34;&gt;Music generation&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Say Hello to DataThings blog</title>
-      <link>http://datathings.com/blog/post/say-hello/</link>
-      <pubDate>Thu, 16 Feb 2017 17:07:36 +0100</pubDate>
-      
-      <guid>http://datathings.com/blog/post/say-hello/</guid>
-      <description>&lt;p&gt;Hello world!&lt;/p&gt;
 </description>
     </item>
     
