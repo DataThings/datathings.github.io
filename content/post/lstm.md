@@ -1,6 +1,6 @@
 +++
 date = "2017-02-17T12:56:49+01:00"
-description = "Different showcases of LSTM neural network usages"
+description = "Different use cases of LSTM neural network"
 title = "The magic of LSTM neural networks"
 categories = ["machine learning"]
 tags = ["lstm", "neural networks", "applications", "text generation", "music generation", "image captioning", "handwriting"]
