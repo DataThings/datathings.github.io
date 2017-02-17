@@ -3,7 +3,7 @@ baseurl = "http://datathings.com/blog/"
 languageCode = "en-us"
 theme = "hugo-cactus-theme"
 # Enter your tracking code to enable Google Analytics
-googleAnalytics = ""
+googleAnalytics = "UA-92108122-1"
 # Disable comments by leaving disqusShortname empty
 disqusShortname = ""
 publishDir = "public/blog"
