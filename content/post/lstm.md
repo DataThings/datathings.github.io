@@ -19,7 +19,7 @@ As a simple example, consider that we want to predict the next number of the fol
 Although in both cases, the current last input was number **8**, the prediction outcome should be different (when we take into account the contextual information of previous values and not only the last one).
 
 # How they work
-LSTM networks manage to keep contextual information of inputs by integrating a **loop** that allows information to flow from one step to the next. These loops make recurrent neural networks seem magical. But if we think about it for a second, as you are reading this post, you are understanding each word based on your understanding of the previous words. You don’t throw everything away and start thinking from scratch at each word. Similarly, LSTM predictions are always conditionned by the past experience of the network's inputs.
+LSTM networks manage to keep contextual information of inputs by integrating a *loop* that allows information to flow from one step to the next. These loops make recurrent neural networks seem magical. But if we think about it for a second, as you are reading this post, you are understanding each word based on your understanding of the previous words. You don’t throw everything away and start thinking from scratch at each word. Similarly, LSTM predictions are always conditioned by the past experience of the network's inputs.
 
 
 {{< figure src="http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png" title="LSTM loop unrolled" >}}
@@ -35,9 +35,9 @@ In this post, I won't go more than this about the technical details of LSTM. [Th
 # Examples of LSTM usage
 
 ## Text Generation
-Generating a text, like this one, can be converted to an LSTM task where each letter is generated taking into account all the previously generated letters. [Andrej Karpathy,](http://karpathy.github.io/2015/05/21/rnn-effectiveness/) shows different examples of text generation by LSTM depending on the training set you feed them. These are some of the automatically generated examples:
+Generating a text, like this one, can be converted to an LSTM task where each letter is generated taking into account all the previously generated letters. In fact, [teaching an LSTM network the alphabet] (http://machinelearningmastery.com/understanding-stateful-lstm-recurrent-neural-networks-python-keras/) can be the first programming example to learn how to make LSTM learn something. [Andrej Karpathy,](http://karpathy.github.io/2015/05/21/rnn-effectiveness/) shows different examples of text generation by LSTM depending on the training set you feed them. These are some of the automatically generated text:
 
-### Shakespear:
+### Shakespeare:
 ```
 PANDARUS:
 Alas, I think he shall be come approached and the day
@@ -141,11 +141,13 @@ In a nutshell, they created a neural net with an encoder to compress the text to
 {{< figure src="https://devblogs.nvidia.com/parallelforall/wp-content/uploads/2015/07/Figure3_attention_1-624x352.png" title="English to french translation by NVidia" >}}
 
 ## Image captioning
-Finally, the most impressive and magical use of LSTM networks is to generate from an input image, a text caption describing the contents of the image. Microsoft research is progressing a lot in this area. Here are some sample demos of their results:
+Finally, the most impressive use of LSTM networks is to generate from an input image, a text caption describing the contents of the image. Microsoft research is progressing a lot in this area. Here are some sample demos of their results:
 ![](./microsoft2.png)
 ![](./microsoft1.png)
 
-You can try it yourself here: [https://www.captionbot.ai/](https://www.captionbot.ai/). Have fun!
+You can try their online demo yourself here: [https://www.captionbot.ai/](https://www.captionbot.ai/). Have fun!
+
+In conclusion, the real magic behind LSTM networks is that they are achieving almost human-level of sequence generation quality, without any magic at all (You can even have a look on their [[source code here]](https://github.com/datathings/greycat/blob/master/plugins/ml/src/main/java/greycat/ml/neuralnet/layer/LSTM.java)!).
 
 
 
