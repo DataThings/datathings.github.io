@@ -645,7 +645,7 @@
                 // markerLatitude = 40.679418,
                 // markerLongitude = -73.886275,
                 // First marker popup structure and content 
-                firstContentString = "<div class='gmap-popup'>" + "<h4>" + "Our primary office" + "</h4>" + "<p>" + "Your notes sits here!" + "</p>" + "</div>";
+                firstContentString = "<div class='gmap-popup'>" + "<h4>" + "DataThings office" + "</h4>" + "<p>" + "Paul Wurth Incub'<br/>5 rue de l'industrie<br/>L-1811, Luxembourg, Luxembourg" + "</p>" + "</div>";
             // // Second marker position
             // secondMarkerLatitude = 40.68000,
             // secondMarkerLongitude = -73.901525,
