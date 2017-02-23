@@ -1,6 +1,6 @@
 
 /*==========  Theme  ==========*/
-/* 
+/*
  General Theme
  -------------------------
  */
@@ -34,7 +34,7 @@ body ::selection {
 #page-2 {
   background: #ffffff;
 }
-/* 
+/*
  Loaders
  -------------------------
  */
@@ -53,7 +53,7 @@ body ::selection {
 .page-loader-text {
   color: #171724;
 }
-/* 
+/*
  Scroll Bar
  -------------------------
  */
@@ -66,7 +66,7 @@ body ::selection {
 .scroll-progressbar .scroll-shadow {
   box-shadow: 0 0 10px #00c8aa, 0 0 5px #00c8aa;
 }
-/* 
+/*
  Titles
  -------------------------
  */
@@ -76,7 +76,7 @@ body ::selection {
 .section-title-more {
   color: rgba(12, 12, 23, 0.9);
 }
-/* 
+/*
  Alternate Buttons
  -------------------------
  */
@@ -349,7 +349,7 @@ body ::selection {
 .btn-loading .ink {
   background: #13cfa9;
 }
-/* 
+/*
  Carousel Arrows
  -------------------------
  */
@@ -458,14 +458,14 @@ body ::selection {
 .dotstyle-fillup div span:after {
   background-color: #ffffff;
 }
-/* 
+/*
  Scroll Down Arrow
  -------------------------
  */
 .scroll-down-arrow a {
   color: #ffffff;
 }
-/* 
+/*
  Overlay
  -------------------------
  */
@@ -546,7 +546,7 @@ body ::selection {
 .home-section .carousel .dotstyle-fall div.current:after {
   background: #ffffff;
 }
-/* 
+/*
  Light Overlay
  -------------------------
  */
@@ -715,7 +715,7 @@ body ::selection {
 .section-text {
   color: #454850;
 }
-/* 
+/*
  Alternate Navbars
  -------------------------
  */
@@ -923,7 +923,7 @@ body ::selection {
     color: #ffffff;
   }
 }
-/* 
+/*
  Facts Section
  -------------------------
  */
@@ -934,7 +934,7 @@ body ::selection {
 .fact-text p {
   color: #00c8aa;
 }
-/* 
+/*
  Team Section
  -------------------------
  */
@@ -964,7 +964,7 @@ body ::selection {
 .work-social li {
   background: rgba(117, 122, 134, 0.07);
 }
-/* 
+/*
  Works Section
  -------------------------
  */
@@ -1002,7 +1002,7 @@ body ::selection {
 .portfolio-item-detail a {
   color: #0c0c17;
 }
-/* 
+/*
  Project Order
  -------------------------
  */
@@ -1013,7 +1013,7 @@ body ::selection {
 .portfolio-section-light {
   background: #f5f5fa;
 }
-/* 
+/*
  Services Section
  -------------------------
  */
@@ -1023,7 +1023,7 @@ body ::selection {
 .services-section-item-text {
   color: #262649;
 }
-/* 
+/*
  Skills Section
  -------------------------
  */
@@ -1034,7 +1034,7 @@ body ::selection {
   background: #00c8aa;
   box-shadow: 2px 0 5px 2px rgba(0, 200, 170, 0.3);
 }
-/* 
+/*
  Process Section
  -------------------------
  */
@@ -1079,7 +1079,7 @@ body ::selection {
 .process .arrow-right:before {
   border-color: #171724;
 }
-/* 
+/*
  Testimonials Section
  -------------------------
  */
@@ -1095,7 +1095,7 @@ body ::selection {
 .client-logos i {
   color: #706f83;
 }
-/* 
+/*
  Pricing Section
  -------------------------
  */
@@ -1164,7 +1164,7 @@ body ::selection {
     background-color: #00c8aa;
   }
 }
-/* 
+/*
  Blog Section
  -------------------------
  */
@@ -1174,7 +1174,7 @@ body ::selection {
 .blog-post-preview-link:hover .blog-post-preview-title {
   color: #00c8aa;
 }
-/* 
+/*
  Contact Section
  -------------------------
  */
@@ -1203,7 +1203,7 @@ body ::selection {
   color: #5e1316;
   background-color: #df5e63;
 }
-/* 
+/*
  Google Map
  -------------------------
  */
@@ -1244,7 +1244,7 @@ body ::selection {
 .footer-logo p {
   color: #b8b7cb;
 }
-/* 
+/*
  Footer Section
  -------------------------
  */
@@ -1252,7 +1252,7 @@ body ::selection {
   fill: #706f83;
 }
 .footer-social a {
-  color: #706f83;
+  color: #a5a5a5;
   background: rgba(117, 122, 134, 0.07);
 }
 .footer-social a:hover {
@@ -1284,7 +1284,7 @@ body ::selection {
   background: #0c0c17;
 }
 .footer-bottom-text {
-  color: #706f83;
+  color: #a5a5a5;
 }
 /* Light Foter */
 .light-footer {
@@ -1332,11 +1332,11 @@ body ::selection {
 .light-footer .footer-bottom-text {
   color: #757a86;
 }
-/* 
+/*
  Blog & Works Page Styles
  -------------------------
  */
-/* 
+/*
  Page Header
  ----------
  */
@@ -1493,7 +1493,7 @@ li.comment-item {
   color: #706f83;
   cursor: default;
 }
-/* 
+/*
  Works Pages Styles
  ----------
  */
