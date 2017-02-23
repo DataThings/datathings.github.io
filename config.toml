@@ -1,5 +1,6 @@
 title = "The DataThings Blog"
 baseurl = "http://datathings.com/blog/"
+canonifyURLs = true
 languageCode = "en-us"
 theme = "hugo-cactus-theme"
 # Enter your tracking code to enable Google Analytics
