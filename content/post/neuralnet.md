@@ -142,7 +142,6 @@ Here is what our loss function looks like:
 - At w=2, the loss is 0 and the derivative is 0, we reached a perfect model, nothing is needed. 
 - If w>2, the loss becomes positive again, but the derivative is as well positive, meaning that any more increase in the weight, will increase the losses even more!!  
  
-
 ![Derivative](/img/neuralnet/derivative2.png)
 
 If we initialise randomly the network, we are putting any random point on this curve (let's say **w=3**) . The learning process is actually saying this:
@@ -152,12 +151,9 @@ If we initialise randomly the network, we are putting any random point on this c
 - If it's negative, meaning the error decreases if we increase the weights, then we should increase the weight.
 - If it's 0, we do nothing, we reach our stable point. 
 
-![Derivative](/img/neuralnet/derivative2.png)
-
 In a simple matter, we are designing a process that acts like gravity. No matter where we randomly initialise the ball on this error function curve, there is a kind of force field that drives the ball back to the lowest energy level of ground 0. 
 
 ![Derivative](/img/neuralnet/gd.png)
-
 
 
 ## Step 5- Backpropagation
