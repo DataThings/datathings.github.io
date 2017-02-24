@@ -355,7 +355,7 @@ The advantage of using the mathematical derivative is that it is much faster and
 &lt;li&gt;If w&amp;gt;2, the loss becomes positive again, but the derivative is as well positive, meaning that any more increase in the weight, will increase the losses even more!!&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://datathings.com/blog/img/neuralnet/derivative.png&#34; alt=&#34;Derivative&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://datathings.com/blog/img/neuralnet/derivative2.png&#34; alt=&#34;Derivative&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;If we initialise randomly the network, we are putting any random point on this curve (let&amp;rsquo;s say &lt;strong&gt;w=3&lt;/strong&gt;) . The learning process is actually saying this:&lt;/p&gt;
 
