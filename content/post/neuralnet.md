@@ -1,5 +1,5 @@
 +++
-description = "Neural networks might seem complicated, with lot of mathematics and equations inside. However, the highest abstraction has a very simple straightforward representation. In this post, we will try to explain in the simplest way the basic building blocks of neural networks"
+description = "Trying to explain neural network and the backpropagation mechanism in the simplest most abstract way ever!"
 title = "Neural networks and backpropagation explained in a simple way"
 date = "2017-02-23T13:48:03+01:00"
 categories = ["machine learning"]
