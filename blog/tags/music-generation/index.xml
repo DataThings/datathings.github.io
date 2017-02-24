@@ -365,8 +365,6 @@ The advantage of using the mathematical derivative is that it is much faster and
 &lt;li&gt;If it&amp;rsquo;s 0, we do nothing, we reach our stable point.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://datathings.com/blog/img/neuralnet/derivative2.png&#34; alt=&#34;Derivative&#34; /&gt;&lt;/p&gt;
-
 &lt;p&gt;In a simple matter, we are designing a process that acts like gravity. No matter where we randomly initialise the ball on this error function curve, there is a kind of force field that drives the ball back to the lowest energy level of ground 0.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;http://datathings.com/blog/img/neuralnet/gd.png&#34; alt=&#34;Derivative&#34; /&gt;&lt;/p&gt;
