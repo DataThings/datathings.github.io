@@ -143,7 +143,7 @@ Here is what our loss function looks like:
 - If w>2, the loss becomes positive again, but the derivative is as well positive, meaning that any more increase in the weight, will increase the losses even more!!  
  
 
-![Derivative](/img/neuralnet/derivative.png)
+![Derivative](/img/neuralnet/derivative2.png)
 
 If we initialise randomly the network, we are putting any random point on this curve (let's say **w=3**) . The learning process is actually saying this:
 
