@@ -22,13 +22,13 @@ In order to achieve this, we will decompose the learning process into its severa
 # A simple numerical example 
 The easiest example to start with neural network and supervised learning, is to start simply with one input and one output and a linear relation between them. The goal of the supervised neural network is to try to search over all the possible linear functions which one fits the best the data. Take for instance the following dataset:  
 
-| Input | Desired output | 
-|---|---|
-| 0 | 0 |
-| 1 | 2 | 
-| 2 | 4 | 
-| 3 | 6 | 
-| 4 | 8 | 
+Input | Desired output 
+----- | -----------
+0 | 0
+1 | 2
+2 | 4
+3 | 6
+4 | 8
 
 For this example, it might seems very obvious that the **output = 2 x input**, however it is not the case for most of the real datasets (where the relationship between the input and output is highly non-linear). 
 
@@ -47,13 +47,13 @@ In this example, we are exploring which model of the generic form *y=W.x* can fi
 The natural step to do after initialising the model at random, is to check its performance. 
 We start from the input we have, we pass them through the network layer and calculate the actual output of the model streightforwardly. 
  
-| Input | Actual output of model 1 (y= 3.x)| 
-|---|---|
-| 0 | 0 |
-| 1 | 3 | 
-| 2 | 6 | 
-| 3 | 9 | 
-| 4 | 12 | 
+Input | Actual output of model 1 (y= 3.x)
+---|---
+0 | 0
+1 | 3 
+2 | 6
+3 | 9 
+4 | 12
 
 This step is called forward-propagation, because the calculation flow is going in the natural **forward** direction from the input -> through the neural network -> to the output. 
 
@@ -62,13 +62,13 @@ At this stage, in one hand, we have the actual output of the randomly initialise
 On the other hand, we have the desired output we would like the network to **learn**. 
 Let's put them all in the same table. 
 
-| Input | Actual output | Desired output |
-|---|---|---|
-| 0 | 0 | 0 | 
-| 1 | 3 | 2 | 
-| 2 | 6 | 4 | 
-| 3 | 9 | 6 | 
-| 4 | 12| 8 | 
+Input | Actual output | Desired output
+---|---|---
+0 | 0 | 0 
+1 | 3 | 2 
+2 | 6 | 4 
+3 | 9 | 6 
+4 | 12| 8 
 
 If we compare this to our football player shooting for the first time, the actual output will be the final position of the ball, the desired output would be that the ball goes inside the goal. In the beginning, our player is just shooting randomly. Let's say the ball went most of the time, to the right side of the goal. What he can learn from this, is that he needs to shoot a bit more to the left next time he trains. 
 
@@ -83,14 +83,14 @@ In order to encourage the NN to converge to such situation, we can define the lo
 
 Our table becomes the following: 
 
-| Input | actual | Desired | Absolute Error | Square Error |
-|---|---|---|---|---|
-| 0 | 0 | 0 | 0 | 0 |
-| 1 | 3 | 2 | 1 | 1 |
-| 2 | 6 | 4 | 2 | 4 |
-| 3 | 9 | 6 | 3 | 9 |
-| 4 | 12 | 8 | 4 | 16 |
-|Total:|-|-|**10**| **30** |
+Input | actual | Desired | Absolute Error | Square Error
+---|---|---|---|---
+0 | 0 | 0 | 0 | 0
+1 | 3 | 2 | 1 | 1
+2 | 6 | 4 | 2 | 4
+3 | 9 | 6 | 3 | 9
+4 | 12 | 8 | 4 | 16
+Total:|-|-|**10**| **30**
 
 
 Notice how, if we consider only the first input 0, we can say that the network predicted correctly the result! 
@@ -117,14 +117,14 @@ In order to see the effect of the derivative, we can ask ourselves the following
 
 Let's recalculate the sum of the squares of errors when the weight **W** changes very slightly: 
 
-| Input | Desired Output | W=3 | Square Error | W=3.0001 | Square Error |
-|---|---|---|---|---|---|
-| 0 | 0 | 0 | 0 | 0 | 0 |
-| 1 | 2 | 3 | 1 | 3.0001 |1.0002 |
-| 2 | 4 | 6 | 4 | 6.0002 |4.0008 |
-| 3 | 6 | 9 | 9 | 9.0003 |9.0018 |
-| 4 | 8 | 12 | 16 | 12.0004 |16.0032 |
-|Total:|-|-| **30** |- | **30.006**| 
+Input | Desired Output | W=3 | Square Error | W=3.0001 | Square Error
+---|---|---|---|---|---
+0 | 0 | 0 | 0 | 0 | 0
+1 | 2 | 3 | 1 | 3.0001 |1.0002
+2 | 4 | 6 | 4 | 6.0002 |4.0008
+3 | 6 | 9 | 9 | 9.0003 |9.0018
+4 | 8 | 12 | 16 | 12.0004 |16.0032
+Total:|-|-| **30** |- | **30.006** 
 
 Now as we can see from this table, if we increase **W** from 3 to 3.0001, the sum of squares of error will increase from 30 to 30.006. Since we know that the best function that fits this model is **y=2.x**, increasing the weights from 3 to 3.0001 should obviously create a little bit more error (because we are going further from the intuitive correct weight of 2. 3.0001 > 3 > 2 thus the error is higher)  
 But what we really care about is the rate of which the error changes **relatively** to the changes on the weight. 
