@@ -33,13 +33,41 @@
 
 &lt;p&gt;The easiest example to start with neural network and supervised learning, is to start simply with one input and one output and a linear relation between them. The goal of the supervised neural network is to try to search over all the possible linear functions which one fits the best the data. Take for instance the following dataset:&lt;/p&gt;
 
-&lt;p&gt;| Input | Desired output |
-|&amp;mdash;|&amp;mdash;|
-| 0 | 0 |
-| 1 | 2 |
-| 2 | 4 |
-| 3 | 6 |
-| 4 | 8 |&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Input&lt;/th&gt;
+&lt;th&gt;Desired output&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;p&gt;For this example, it might seems very obvious that the &lt;strong&gt;output = 2 x input&lt;/strong&gt;, however it is not the case for most of the real datasets (where the relationship between the input and output is highly non-linear).&lt;/p&gt;
 
@@ -57,13 +85,41 @@ We will explore later, how, through the learning process, all of these models ca
 &lt;p&gt;The natural step to do after initialising the model at random, is to check its performance.
 We start from the input we have, we pass them through the network layer and calculate the actual output of the model streightforwardly.&lt;/p&gt;
 
-&lt;p&gt;| Input | Actual output of model 1 (y= 3.x)|
-|&amp;mdash;|&amp;mdash;|
-| 0 | 0 |
-| 1 | 3 |
-| 2 | 6 |
-| 3 | 9 |
-| 4 | 12 |&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Input&lt;/th&gt;
+&lt;th&gt;Actual output of model 1 (y= 3.x)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;9&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;12&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;p&gt;This step is called forward-propagation, because the calculation flow is going in the natural &lt;strong&gt;forward&lt;/strong&gt; direction from the input -&amp;gt; through the neural network -&amp;gt; to the output.&lt;/p&gt;
 
