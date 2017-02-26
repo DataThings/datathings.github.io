@@ -6,8 +6,8 @@ if [ -d "public" ]; then
 else
   git clone git@github.com:datathings/datathings.github.io.git public
 fi
-hugo
-cd public
+hugo -d "./public/blog"
+cd public/
 git add -A
 MESSAGE="Site rebuild $(date)"
 git commit -m "$MESSAGE"
