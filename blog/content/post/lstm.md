@@ -5,7 +5,7 @@ title = "The magic of LSTM neural networks"
 categories = ["machine learning"]
 tags = ["lstm", "neural networks", "applications", "text generation", "music generation", "image captioning", "handwriting"]
 author = "Assaad Moawad"
-image = "images/lstm/lstm.png"
+image = "images/lstm/lstm.jpg"
 +++
 
 # Introduction
