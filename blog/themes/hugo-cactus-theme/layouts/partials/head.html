@@ -61,7 +61,7 @@
 {{ with .Params.images }}
     <meta name="twitter:image:src" content="{{ if in (index . 0) "-600x300" }}{{ index . 1 | absURL }}{{ else }}{{ index . 0 | absURL }}{{ end }}">
 {{ else }}
-    <meta name="twitter:image:src" content="{{ .Site.BaseURL }}default.jpg">
+    <meta name="twitter:image:src" content="{{ .Site.BaseURL }}images/default.jpg">
 {{ end }}
     <meta name="twitter:title" content="{{ if .Params.seo_title }}{{ .Params.seo_title }}{{ else }}{{ .Title }}{{ end }}">
     <meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}Blog by http://www.datathings.com {{ end }}{{ end }}">
