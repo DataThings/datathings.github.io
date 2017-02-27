@@ -4,6 +4,8 @@ canonifyURLs = true
 languageCode = "en-us"
 RSSLink ="datathingsRSS.xml"
 theme = "hugo-cactus-theme"
+description = "A blog about data Analytics, machine learning, neural networks, temporal graph databases, modeling, big data. The blog is edited by the DataThings crew members."
+
 #theme = "hugo-dgraph-theme"
 # Enter your tracking code to enable Google Analytics
 googleAnalytics = "UA-92108122-1"
@@ -22,7 +24,7 @@ paginatePath  ="page"
     [params]
 
       name = "The DataThings Blog"
-      bio = "A blog about data Analytics, machine learning, temporal graph databases, modeling, big data. The blog is edited by the DataThings crew members."
+      bio = "A blog about data Analytics, machine learning, neural networks, temporal graph databases, modeling, big data. The blog is edited by the DataThings crew members."
       enableRSS = true
       subscribe = "RSS feed"
       # To integrate discourse commenting system and also to display discourse in the footer.

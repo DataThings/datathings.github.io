@@ -3,37 +3,36 @@
 <!--[if gt IE 8] <!--> <html class="ie" lang="en"> <!-- ![endif]-->
   <head>
     <meta charset="utf-8">
-      {{ .Hugo.Generator }}  
+      {{ .Hugo.Generator }}
 
     <!-- favicons-->
-    <link rel="apple-touch-icon" sizes="57x57" href="assets/images/favicons/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="assets/images/favicons/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="assets/images/favicons/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/images/favicons/apple-touch-icon-76x76.png">  
-
-    <link rel="apple-touch-icon" sizes="114x114" href="assets/images/favicons/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="assets/images/favicons/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="assets/images/favicons/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="assets/images/favicons/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-touch-icon-180x180.png">  
-
-    <link rel="icon" type="image/png" href="assets/images/favicons/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="assets/images/favicons/android-chrome-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="/assets/favicons/favicon-194x194.png" sizes="194x194">
-    <link rel="icon" type="image/png" href="assets/images/favicons/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="assets/images/favicons/favicon-16x16.png" sizes="16x16">  
-
-    <link rel="manifest" href="assets/images/favicons/manifest.json">
-    <link rel="mask-icon" href="assets/images/favicons/safari-pinned-tab.svg" color="#fe2c06">
-    <link rel="shortcut icon" href="/images/favicon.ico">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-TileImage" content="/assets/favicons/mstile-144x144.png">
-    <meta name="msapplication-config" content="/assets/favicons/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">  
+    <!-- Favicon (retina) -->
+			 <link rel="shortcut icon" href="{{ .Site.BaseURL }}images/favicon.ico">
+	     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{ .Site.BaseURL }}images/apple-touch-icon-57x57.png" />
+	     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ .Site.BaseURL }}images/apple-touch-icon-114x114.png" />
+	     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ .Site.BaseURL }}images/apple-touch-icon-72x72.png" />
+	     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ .Site.BaseURL }}images/apple-touch-icon-144x144.png" />
+	     <link rel="apple-touch-icon-precomposed" sizes="60x60" href="{{ .Site.BaseURL }}images/apple-touch-icon-60x60.png" />
+	     <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{{ .Site.BaseURL }}images/apple-touch-icon-120x120.png" />
+	     <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{{ .Site.BaseURL }}images/apple-touch-icon-76x76.png" />
+	     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{ .Site.BaseURL }}images/apple-touch-icon-152x152.png" />
+	     <link rel="icon" type="image/png" href="{{ .Site.BaseURL }}images/favicon-196x196.png" sizes="196x196" />
+	     <link rel="icon" type="image/png" href="{{ .Site.BaseURL }}images/favicon-96x96.png" sizes="96x96" />
+	     <link rel="icon" type="image/png" href="{{ .Site.BaseURL }}images/favicon-32x32.png" sizes="32x32" />
+	     <link rel="icon" type="image/png" href="{{ .Site.BaseURL }}images/favicon-16x16.png" sizes="16x16" />
+	     <link rel="icon" type="image/png" href="{{ .Site.BaseURL }}images/favicon-128.png" sizes="128x128" />
+			 <meta name="application-name" content="&nbsp;"/>
+			 <meta name="msapplication-TileColor" content="#FFFFFF" />
+			 <meta name="msapplication-TileImage" content="{{ .Site.BaseURL }}images/mstile-144x144.png" />
+			 <meta name="msapplication-square70x70logo" content="{{ .Site.BaseURL }}images/mstile-70x70.png" />
+			 <meta name="msapplication-square150x150logo" content="{{ .Site.BaseURL }}images/mstile-150x150.png" />
+			 <meta name="msapplication-wide310x150logo" content="{{ .Site.BaseURL }}images/mstile-310x150.png" />
+			 <meta name="msapplication-square310x310logo" content="{{ .Site.BaseURL }}images/mstile-310x310.png" />
+       
 
     <link rel="stylesheet" href="{{ .Site.BaseURL }}css/styles.css">
     <link rel="stylesheet" href="{{ .Site.BaseURL }}css/custom.css">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ .Site.BaseURL }}index.xml">    
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ .Site.BaseURL }}index.xml">
 
     {{ if eq .URL "/" }}
     <title>{{ .Title }}</title>
@@ -43,16 +42,16 @@
     <title>{{ .Title }} - {{ .Site.Title }}</title>
     <meta property='og:title' content="{{ .Title }} - {{ .Site.Title }}">
     <meta property="og:type" content="article">
-    {{ end }}    
+    {{ end }}
 
     <meta property="og:url" content="{{ .Permalink }}">
     {{ with .Description }}<meta name="description" content="{{ . }}">{{ end }}
-    {{ with .Params.image }}<meta property="og:image" content="{{ $.Site.BaseURL }}images/{{ . }}">{{ end }}  
+    {{ with .Params.image }}<meta property="og:image" content="{{ $.Site.BaseURL }}images/{{ . }}">{{ end }}
 
     <!-- fonts-->
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,800,700,500" rel="stylesheet" type="text/css">
     <!--modernizr-->
     <script type="text/javascript" src="/js/modernizr.min.js"></script>
     <!--[if lt IE 9] <script src="assets/js/ie.min.js"></script> ![endif]-->
-    
+
   </head>
