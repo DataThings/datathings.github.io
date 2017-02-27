@@ -55,16 +55,10 @@
 	    {{ template "_internal/google_news.html" . }}
 	    {{ template "_internal/schema.html" . }}
 	    {{ template "_internal/twitter_cards.html" . }}
-
-
     <meta name="twitter:card" content="summary_large_image">
-{{ with .Params.images }}
-    <meta name="twitter:image:src" content="{{ if in (index . 0) "-600x300" }}{{ index . 1 | absURL }}{{ else }}{{ index . 0 | absURL }}{{ end }}">
-{{ else }}
-    <meta name="twitter:image:src" content="{{ .Site.BaseURL }}images/default.jpg">
-{{ end }}
-    <meta name="twitter:title" content="{{ if .Params.seo_title }}{{ .Params.seo_title }}{{ else }}{{ .Title }}{{ end }}">
-    <meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}Blog by http://www.datathings.com {{ end }}{{ end }}">
+		<meta name="twitter:image:src" content="{{ $.Site.BaseURL }}{{ if .Params.image }}{{.Params.image}}{{ else }}images/default.jpg{{ end }}">
+		<meta name="twitter:title" content="{{ if .Params.seo_title }}{{ .Params.seo_title }}{{ else }}{{ .Title }}{{ end }}">
+		<meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}Blog by http://www.datathings.com {{ end }}{{ end }}">
     {{ with .Site.Params.social.twitter }}<meta name="twitter:site" content="@{{ . }}">{{ end }}
     {{ with .Site.Params.social.twitter_domain }}<meta name="twitter:domain" content="{{ . }}">{{ end }}
 {{ if and (isset .Site.Params "authors") (isset .Params "author") }}

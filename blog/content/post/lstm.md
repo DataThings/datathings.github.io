@@ -4,8 +4,8 @@ description = "Different use cases of LSTM neural network"
 title = "The magic of LSTM neural networks"
 categories = ["machine learning"]
 tags = ["lstm", "neural networks", "applications", "text generation", "music generation", "image captioning", "handwriting"]
-author ="Assaad Moawad"
-
+author = "Assaad Moawad"
+image = "images/lstm/lstm.png"
 +++
 
 # Introduction
