@@ -1252,11 +1252,13 @@ body ::selection {
   fill: #706f83;
 }
 .footer-social a {
-  color: #706f83;
-  background: rgba(117, 122, 134, 0.07);
+  /*color: #706f83;*/
+   color: #00b2ca; 
+  background: rgba(117, 122, 134, 0.15);
 }
 .footer-social a:hover {
-  color: #00b2ca;
+  /*color: #00b2ca;*/
+    color: #fff;
 }
 /* Go Top Button */
 .circle1,

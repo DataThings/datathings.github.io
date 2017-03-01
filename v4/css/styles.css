@@ -3111,6 +3111,7 @@ body {
   display: inline-block;
   width: 79%;
   height: auto;
+  border-radius: 3px;
   margin: 20px auto 20px auto;
 }
 .team-item-info {
@@ -6869,10 +6870,10 @@ min-width: 768px
     -webkit-filter: blur(0px);
             filter: blur(0px);
   }
-  .team-item:hover .team-item-img {
+  /*.team-item:hover .team-item-img {
     -webkit-filter: blur(12px);
             filter: blur(12px);
-  }
+  }*/
   .section-title {
     padding-bottom: 90px;
   }
