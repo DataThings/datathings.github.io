@@ -644,29 +644,31 @@
                     <div class="row">
                         <div class="col-md-offset-1 col-md-10">
                             <form id="ajax-contact" class="" method="post" action="http://datathinjc.cluster021.hosting.ovh.net/mailer.php">
+                                <input type="email" name="email" style="display: none" id="email" />
+                                <input type="text" name="dt_fe_spam" style="display: none" value="DT_ROCKS!" />
                                 <fieldset>
                                     <div class="row">
                                         <div class="input col-xs-12 col-sm-12 padding-bottom-xs-50 padding-bottom-40">
-                                            <label class="input-label" for="name">
+                                            <label class="input-label" for="dt_n_ame">
                                                 <span class="input-label-content font-second" data-content="name">name *</span>
                                             </label>
-                                            <input class="input-field" type="text" name="name" id="name" required />
+                                            <input class="input-field" type="text" name="dt_n_ame" id="dt_n_ame" required />
                                         </div>
                                         <div class="input col-xs-12 col-sm-6 padding-bottom-xs-50 padding-bottom-50">
-                                            <label class="input-label" for="email">
+                                            <label class="input-label" for="dt_e_mail">
                                                 <span class="input-label-content font-second" data-content="email">email *</span>
                                             </label>
-                                            <input class="input-field" type="email" name="email" id="email" required />
+                                            <input class="input-field" type="email" name="dt_e_mail" id="dt_e_mail" required />
                                         </div>
                                         <div class="input col-xs-12 col-sm-6 padding-bottom-xs-60 padding-bottom-50">
-                                            <label class="input-label" for="company">
+                                            <label class="input-label" for="dt_c_ompany">
                                                 <span class="input-label-content font-second" data-content="company">company</span>
                                             </label>
-                                            <input class="input-field" type="text" name="company" id="company" />
+                                            <input class="input-field" type="text" name="dt_c_ompany" id="dt_c_ompany" />
                                         </div>
                                         <div class="message col-xs-12 col-sm-12 padding-bottom-xs-40 padding-bottom-30">
-                                            <label class="textarea-label font-second" for="message">message *</label>
-                                            <textarea class="input-field textarea" name="message" id="message" required></textarea>
+                                            <label class="textarea-label font-second" for="dt_m_essage">message *</label>
+                                            <textarea class="input-field textarea" name="dt_m_essage" id="dt_m_essage" required></textarea>
                                         </div>
                                     </div>
                                     <div id="form-messages" class="form-message"></div>
@@ -735,7 +737,7 @@
                 <div class="footer-bottom">
                     <!-- Copyright -->
                     <span class="footer-bottom-text font-second">DataThings S.à.r.l. © 2017. All Right Reserved.<br />
-                        <span>• 5 rue de l’industrie L-1811 Luxembourg, Luxembourg • Capital 12.550 € <br />• VAT LU29052933 • RCS B211944 • Matricule 2017.2401.105 • Autorisation d’établissement 10073368/0</span>
+                        <span>5 rue de l’industrie L-1811 Luxembourg, Luxembourg • Capital 12.550 € <br />VAT LU29052933 • RCS B211944 • Matricule 2017.2401.105 • Autorisation d’établissement 10073368/0</span>
                     </span>
                     <!-- End Copyright -->
                 </div>
