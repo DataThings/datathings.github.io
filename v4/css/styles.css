@@ -3500,13 +3500,13 @@ body {
 }
 .pricing-features li {
   width: 100px;
-  float: left;
+  /*float: left;*/
   padding: 1.6em 14px;
   font-size: 1.4rem;
   text-align: center;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  /*overflow: hidden;*/
+  /*text-overflow: ellipsis;*/
 }
 .pricing-features em {
   display: block;
