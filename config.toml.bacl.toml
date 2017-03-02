@@ -1,0 +1,24 @@
+title = "The DataThings Blog"
+baseurl = "http://datathings.com/blog/"
+canonifyURLs = true
+languageCode = "en-us"
+RSSLink ="datathingsRSS.xml"
+theme = "hugo-strata-theme"
+description = "The Datathings Blog: we speak about data Analytics, machine learning, neural networks, temporal graph databases, modeling, big data."
+googleAnalytics = "UA-92108122-1"
+disqusShortname = ""
+publishDir = "public/blog"
+
+
+#[taxonomies]
+#    category = "categories"
+#    tag = "tags"
+# Number of blogs you want to list on a single page.
+#paginate = 5
+#paginatePath  ="page"
+
+[params]
+    github = "datathings/greycat"
+    website = "www.datathings.com"
+    twitter = "datathingslu"
+    copyright = "Copyright © 2017, DataThings S.a.r.l all rights reserved."
