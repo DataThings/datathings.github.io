@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Explained on The DataThings Blog</title>
+    <title>Explained on Datathings Blog</title>
     <link>http://datathings.com/blog/tags/explained/index.xml</link>
-    <description>Recent content in Explained on The DataThings Blog</description>
+    <description>Recent content in Explained on Datathings Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>Copyright © 2017, DataThings S.a.r.l all rights reserved.</copyright>
     <atom:link href="http://datathings.com/blog/tags/explained/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
@@ -23,7 +22,7 @@
 
 &lt;p&gt;A supervised neural network, at the highest and simplest abstract representation, can be presented as a black box with 2 methods learn and predict as following:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://datathings.com/blog/images/neuralnet/nnblackbox.png&#34; alt=&#34;Neural network as a black box&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../images/neuralnet/nnblackbox.png&#34; alt=&#34;Neural network as a black box&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The learning process takes the inputs and the desired outputs and updates its internal state accordingly, so the calculated output get as close as possible from the desired output. The predict process takes input and generate, using the internal state, the most likely output according to its past &lt;em&gt;&amp;ldquo;training experience&amp;rdquo;&lt;/em&gt;. That&amp;rsquo;s why machine learning is called sometimes &lt;strong&gt;model fitting&lt;/strong&gt;.&lt;/p&gt;
 
@@ -355,7 +354,7 @@ The advantage of using the mathematical derivative is that it is much faster and
 &lt;li&gt;If w&amp;gt;2, the loss becomes positive again, but the derivative is as well positive, meaning that any more increase in the weight, will increase the losses even more!!&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://datathings.com/blog/images/neuralnet/derivative2.png&#34; alt=&#34;Derivative&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../images/neuralnet/derivative2.png&#34; alt=&#34;Derivative&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;If we initialise randomly the network, we are putting any random point on this curve (let&amp;rsquo;s say &lt;strong&gt;w=3&lt;/strong&gt;) . The learning process is actually saying this:&lt;/p&gt;
 
@@ -368,14 +367,14 @@ The advantage of using the mathematical derivative is that it is much faster and
 
 &lt;p&gt;In a simple matter, we are designing a process that acts like gravity. No matter where we randomly initialise the ball on this error function curve, there is a kind of force field that drives the ball back to the lowest energy level of ground 0.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://datathings.com/blog/images/neuralnet/gd.png&#34; alt=&#34;Derivative&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../images/neuralnet/gd.png&#34; alt=&#34;Derivative&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;step-5-backpropagation&#34;&gt;Step 5- Backpropagation&lt;/h2&gt;
 
 &lt;p&gt;In this example, we used only one layer inside the neural network between the inputs and the outputs. In many cases, more layers are needed, in order to reach more variations in the functionality of the neural network.
 For sure, we can always create one complicated function that represent the composition over the whole layers of the network. For instance, if layer 1 is doing: 3.x to generate a hidden output z, and layer 2 is doing: z^2 to generate the final output, the composed network will be doing (3.x)^2 = 9.x^2. However in most cases composing the functions is very hard. Plus for every composition one has to calculate the dedicated derivative of the composition (which is not at all scalable and very error prone).&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://datathings.com/blog/images/neuralnet/nnequivalence.png&#34; alt=&#34;Composing neural network&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../images/neuralnet/nnequivalence.png&#34; alt=&#34;Composing neural network&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;In order to solve the problem, luckily for us, derivative is decomposable, thus can be back-propagated.
 We have the starting point of errors, which is the loss function, and we know how to derivate it, and if we know how to derivate each function from the composition, we can propagate back the error from the end to the start.
@@ -396,7 +395,7 @@ If we create a library of &lt;strong&gt;differentiable&lt;/strong&gt; functions 
 &lt;p&gt;This figure shows the process of backpropagating errors following this schemas:
 Input -&amp;gt; Forward calls -&amp;gt; Loss function -&amp;gt; derivative -&amp;gt; backpropagation of errors. At each stage we get the deltas on the weights of this stage.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://datathings.com/blog/images/neuralnet/backpropa.png&#34; alt=&#34;Composing neural network&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../images/neuralnet/backpropa.png&#34; alt=&#34;Composing neural network&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;step-6-weight-update&#34;&gt;Step 6- Weight update&lt;/h2&gt;
 
@@ -446,7 +445,7 @@ The difference is that in genetic algorithms, the mutation is blind. Some mutati
 
 &lt;p&gt;In order to summarise, Here is what the learning process on neural networks looks like:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://datathings.com/blog/images/neuralnet/overall.png&#34; alt=&#34;Composing neural network&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../../images/neuralnet/overall.png&#34; alt=&#34;Composing neural network&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;In our GreyCat, the different building blocks of a fully functional neural network are &lt;a href=&#34;https://github.com/datathings/greycat/tree/master/plugins/ml/src/main/java/greycat/ml/neuralnet&#34;&gt;implemented here&lt;/a&gt;.&lt;/p&gt;
 </description>

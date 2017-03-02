@@ -17,17 +17,6 @@
   </url>
   
   <url>
-    <loc>http://datathings.com/blog/about/</loc>
-    <lastmod>2015-06-20T14:02:37+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://datathings.com/blog/about/</loc>
-    <lastmod>2015-06-20T14:02:37+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://datathings.com/blog/tags/applications/</loc>
     <lastmod>2017-02-17T12:56:49+01:00</lastmod>
     <priority>0</priority>
@@ -41,6 +30,12 @@
   
   <url>
     <loc>http://datathings.com/blog/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://datathings.com/blog/</loc>
+    <lastmod>2017-02-23T13:48:03+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -105,12 +100,6 @@
   
   <url>
     <loc>http://datathings.com/blog/tags/text-generation/</loc>
-    <lastmod>2017-02-23T13:48:03+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://datathings.com/blog/</loc>
     <lastmod>2017-02-23T13:48:03+01:00</lastmod>
     <priority>0</priority>
   </url>
