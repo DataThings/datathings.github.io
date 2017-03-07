@@ -9,7 +9,7 @@ publishDir = "public/blog"
 
 [params]
 	name = "DataThings"
-	description = "The Datathings Blog: we speak about data Analytics, machine learning, neural networks, temporal graph databases, modeling, big data."
+	description = "The Datathings Blog: we speak about live data Analytics, machine learning, neural networks, temporal graph databases, modeling, big data."
 	date_format = "2006-01-02"
 	# Add custom assets with their paths relative to the static folder
 	custom_js   = []
@@ -18,24 +18,24 @@ publishDir = "public/blog"
 		# Replace the avatar with a picture of your own under static/images
 		avatar = "dt_logo_square.svg"
 		# Use Markdown to format the string. This works nearly all over the theme
-		bio = "This is **DataThings** blog,<br />here we share innovations about<br />live analytics, machine learning..."
+		bio = "This is **DataThings** blog,<br />here we share innovations about<br />live data analytics, machine learning,<br />neural networks, temporal graph<br /> databases, big data."
 		# The icons will be shown if you enter your username
-		twitter = "DatathingsLu"
+		twitter = "datathingslu"
 		github = "datathings"
 		gitlab = ""
 		dribbble = ""
-		facebook = ""
-		googleplus = ""
+		# facebook = "datathingslu"
+		# googleplus = "datathings"
 		flickr = ""
-		linkedin = ""
+		linkedin = "https://www.linkedin.com/company/datathings"
 		copyright = [
-			"&copy; DataThings"
+			"DataThings &copy; 2017"
 		]
 
 	[params.about]
 		hide  = false
 		title = "We are DataThings"
-		content = "We are four passionate researchers holding PhDs in Computer Science. After several years of successful collaboration at the University of Luxembourg/SnT, we founded DataThings to start the next chapter in data analytics. We aim at making the vision of live analytics of complex and time-evolving data a reality in order to support your businesses in operational decision-making."
+		content = "We are a startup of four passionate researchers holding PhDs in Computer Science. After several years of successful collaboration at the University of Luxembourg/SnT, we founded DataThings to start the next chapter in live data analytics. We aim at improving live analytics over complex and time-evolving data a reality in order to support your businesses in operational decision-making."
 
 
 	[params.portfolio]

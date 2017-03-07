@@ -9,5 +9,7 @@
 	    {{ .Content }}
 	</p>
 
+<a href="https://twitter.com/intent/tweet?text={{ .Title }}{{ with .Site.Params.sidebar.twitter }} by @{{ . }}{{ end }}" class="twitter-share-button" data-size="large" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 	{{ template "_internal/disqus.html" . }}
 {{ end }}

@@ -14,12 +14,49 @@
 		{{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
 		{{ with .Site.LanguageCode }}<meta http-equiv="content-language" content="{{ . }}" />{{ end }}
 
+		<!-- Favicon (retina) -->
+			 <link rel="shortcut icon" href="{{ .Site.BaseURL }}images/favicon.ico">
+			 <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{ .Site.BaseURL }}images/apple-touch-icon-57x57.png" />
+			 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ .Site.BaseURL }}images/apple-touch-icon-114x114.png" />
+			 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ .Site.BaseURL }}images/apple-touch-icon-72x72.png" />
+			 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ .Site.BaseURL }}images/apple-touch-icon-144x144.png" />
+			 <link rel="apple-touch-icon-precomposed" sizes="60x60" href="{{ .Site.BaseURL }}images/apple-touch-icon-60x60.png" />
+			 <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{{ .Site.BaseURL }}images/apple-touch-icon-120x120.png" />
+			 <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{{ .Site.BaseURL }}images/apple-touch-icon-76x76.png" />
+			 <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{ .Site.BaseURL }}images/apple-touch-icon-152x152.png" />
+			 <link rel="icon" type="image/png" href="{{ .Site.BaseURL }}images/favicon-196x196.png" sizes="196x196" />
+			 <link rel="icon" type="image/png" href="{{ .Site.BaseURL }}images/favicon-96x96.png" sizes="96x96" />
+			 <link rel="icon" type="image/png" href="{{ .Site.BaseURL }}images/favicon-32x32.png" sizes="32x32" />
+			 <link rel="icon" type="image/png" href="{{ .Site.BaseURL }}images/favicon-16x16.png" sizes="16x16" />
+			 <link rel="icon" type="image/png" href="{{ .Site.BaseURL }}images/favicon-128.png" sizes="128x128" />
+			 <meta name="application-name" content="&nbsp;"/>
+			 <meta name="msapplication-TileColor" content="#FFFFFF" />
+			 <meta name="msapplication-TileImage" content="{{ .Site.BaseURL }}images/mstile-144x144.png" />
+			 <meta name="msapplication-square70x70logo" content="{{ .Site.BaseURL }}images/mstile-70x70.png" />
+			 <meta name="msapplication-square150x150logo" content="{{ .Site.BaseURL }}images/mstile-150x150.png" />
+			 <meta name="msapplication-wide310x150logo" content="{{ .Site.BaseURL }}images/mstile-310x150.png" />
+			 <meta name="msapplication-square310x310logo" content="{{ .Site.BaseURL }}images/mstile-310x310.png" />
+
+
+<!-- Open graph -->
 		{{ if not .Site.Params.OpenGraph.hide }}
 		<meta name="og:site_name" content="{{ .Site.Title }}">
 		<meta name="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
 		<meta name="og:url" content="{{ .Permalink }}">
-		<meta name="og:image" content="{{ .Site.BaseURL }}images/{{ .Site.Params.sidebar.avatar }}">
+		<meta name="og:image" content= "{{ if .IsHome }}{{ .Site.BaseURL }}images/{{ .Site.Params.sidebar.avatar }}{{ else }}{{ $.Site.BaseURL }}{{ if .Params.image }}{{.Params.image}}{{ else }}images/default.jpg{{ end }}{{ end }}">
 		{{ end }}
+
+<!-- Twitter card -->
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:image:src" content="{{ $.Site.BaseURL }}{{ if .Params.image }}{{.Params.image}}{{ else }}images/default.jpg{{ end }}">
+		<meta name="twitter:title" content="{{ if .Params.seo_title }}{{ .Params.seo_title }}{{ else }}{{ .Title }}{{ end }}">
+		<meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}Blog by http://www.datathings.com {{ end }}{{ end }}">
+    {{ with .Site.Params.social.twitter }}<meta name="twitter:site" content="@{{ . }}">{{ end }}
+    {{ with .Site.Params.social.twitter_domain }}<meta name="twitter:domain" content="{{ . }}">{{ end }}
+{{ if and (isset .Site.Params "authors") (isset .Params "author") }}
+    {{ $author := index .Site.Params.authors .Params.author }}{{ with $author.social.twitter }}<meta name="twitter:creator" content="@{{.}}">{{ end }}
+{{ end }}
+
 
 		{{ .Hugo.Generator }}
 
