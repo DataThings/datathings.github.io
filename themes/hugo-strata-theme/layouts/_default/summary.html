@@ -2,9 +2,14 @@
     <h1>
         <a href="{{ .Permalink }}">{{ .Title }}</a>
     </h1>
-
     {{ partial "post-meta" . }}
 </span>
 
-<p>{{ .Summary }}</p>
+<p> {{ .Summary }}
+  {{ if .Truncated }}
+  <div>
+    <a href="{{ .RelPermalink }}">Read More…</a>
+  </div>
+  {{ end }}
+</p>
 <hr>

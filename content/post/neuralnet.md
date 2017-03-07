@@ -5,10 +5,9 @@ title: "Neural networks and backpropagation explained in a simple way"
 date: "2017-02-23T13:48:03+01:00"
 categories: ["machine learning"]
 tags: ["neural networks", "explained", "text generation", "music generation", "image captioning", "handwriting"]
-image: "images/neuralnet/overall.jpg"
+image: "images/headers/neural.jpg"
 ---
 
-# Introduction
 Any complex system can be abstracted in a simple way, or at least dissected to its basic abstract components. Complexity arises by the accumulation of several simple layers. The goal of this post, is to explain how neural networks work with the most simple abstraction. We will try to reduce the machine learning mechanism in NN to its basic abstract components. Unlike other posts that explain neural networks, we will try to use the least possible amount of mathematical equations and programming code, and focus only on the abstract concepts.
 
 A supervised neural network, at the highest and simplest abstract representation, can be presented as a black box with 2 methods learn and predict as following:

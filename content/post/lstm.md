@@ -5,10 +5,9 @@ title = "The magic of LSTM neural networks"
 categories = ["machine learning"]
 tags = ["lstm", "neural networks", "applications", "text generation", "music generation", "image captioning", "handwriting"]
 author = "Assaad Moawad"
-image = "images/lstm/lstm.jpg"
+image = "images/headers/sunset.jpg"
 +++
 
-# Introduction
 [LSTM Neural Networks] (https://en.wikipedia.org/wiki/Long_short-term_memory), which stand for **L**ong **S**hort-**T**erm **M**emory, are a particular type of recurrent neural networks that got lot of attention recently within the machine learning community.
 
 

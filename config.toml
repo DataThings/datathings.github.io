@@ -119,12 +119,19 @@ publishDir = "public/blog"
 
 
 # Menu links that appear on the left sidebar
+
+
 [[menu.main]]
 	name = "Home"
 	url  = "/"
 	weight = 0
 
 [[menu.main]]
-	name = "Blog"
+	name = "Posts"
 	url  = "post/"
 	weight = 10
+
+[[menu.main]]
+		name = "Website"
+		url  = "http://www.datathings.com"
+		weight = 20
