@@ -61,6 +61,30 @@ img {
 
 /* Containers */
 
+.icon-twitter:before { content: '\e801'; }
+.icon-twitter-1:before { content: '\e804'; }
+.icon-facebook-circled:before { content: '\e805'; }
+.icon-twitter-circled:before { content: '\e806'; }
+.icon-facebook-rect:before { content: '\e803'; }
+
+#sharing a {
+  font-size: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  margin-left: 2px;
+}
+
+#sharing a.facebook {
+  background: #4361b3;
+}
+#sharing a.twitter {
+  background: #4fafed;
+}
+
+
 	.container {
 		margin-left: auto;
 		margin-right: auto;
@@ -1582,13 +1606,13 @@ img {
 		-ms-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 		border-bottom: dotted 1px;
-		color: #49bf9d;
+		color: #00b2ca;
 		text-decoration: none;
 	}
 
 		a:hover {
 			border-bottom-color: transparent;
-			color: #49bf9d !important;
+			color: #00b2ca !important;
 			text-decoration: none;
 		}
 
@@ -1794,7 +1818,7 @@ img {
 		input[type="email"]:focus,
 		select:focus,
 		textarea:focus {
-			border-color: #49bf9d;
+			border-color: #00b2ca;
 		}
 
 	.select-wrapper {
@@ -1904,7 +1928,7 @@ img {
 
 		input[type="checkbox"]:focus + label:before,
 		input[type="radio"]:focus + label:before {
-			border-color: #49bf9d;
+			border-color: #00b2ca;
 		}
 
 	input[type="checkbox"] + label:before {
@@ -2352,8 +2376,8 @@ img {
 		input[type="reset"]:hover,
 		input[type="button"]:hover,
 		.button:hover {
-			border-color: #49bf9d;
-			color: #49bf9d !important;
+			border-color: #00b2ca;
+			color: #00b2ca !important;
 		}
 
 		input[type="submit"]:active,
@@ -2361,8 +2385,8 @@ img {
 		input[type="button"]:active,
 		.button:active {
 			background-color: rgba(73, 191, 157, 0.1);
-			border-color: #49bf9d;
-			color: #49bf9d !important;
+			border-color: #00b2ca;
+			color: #00b2ca !important;
 		}
 
 		input[type="submit"].icon,
@@ -2407,8 +2431,8 @@ img {
 		input[type="reset"].special,
 		input[type="button"].special,
 		.button.special {
-			background-color: #49bf9d;
-			border-color: #49bf9d;
+			background-color: #00b2ca;
+			border-color: #00b2ca;
 			color: #ffffff !important;
 		}
 
