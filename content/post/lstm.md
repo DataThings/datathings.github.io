@@ -1,10 +1,10 @@
 ---
-date : "2017-02-17T12:56:49+01:00"
-description : "Different use cases of LSTM neural network"
 title : "The magic of LSTM neural networks"
+description : "Different use cases of LSTM neural network"
+author : "Assaad Moawad"
+date : "2017-02-17T12:56:49+01:00"
 categories : ["machine learning", "neural networks"]
 tags : ["lstm", "neural networks", "text generation", "music generation", "image captioning", "handwriting"]
-author : "Assaad Moawad"
 image : "images/headers/sunset.jpg"
 ---
 

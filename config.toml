@@ -1,6 +1,6 @@
 baseurl = "http://datathings.com/blog/"
 languageCode = "en-us"
-title = "Datathings Blog"
+title = "Datathings' Blog"
 theme = "hugo-strata-theme"
 disqusShortname = "datathings"
 googleAnalytics = "UA-92108122-1"

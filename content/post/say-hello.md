@@ -1,7 +1,7 @@
 ---
-date : "2017-02-16T17:07:36+01:00"
-description : "Our first blog post"
 title : "Say Hello to DataThings' blog"
+description : "Our first blog post"
+date : "2017-02-16T17:07:36+01:00"
 categories : ["blog"]
 tags : ["hello world"]
 ---
