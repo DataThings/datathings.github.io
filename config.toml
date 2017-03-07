@@ -10,7 +10,7 @@ publishDir = "public/blog"
 [params]
 	name = "DataThings"
 	description = "The Datathings Blog: we speak about live data Analytics, machine learning, neural networks, temporal graph databases, modeling, big data."
-	date_format = "15.01.2017"
+	date_format = "02-01-2006"
 	# Add custom assets with their paths relative to the static folder
 	custom_js   = []
 	custom_css  = []
