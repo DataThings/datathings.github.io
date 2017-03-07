@@ -6,11 +6,13 @@
 	<div class="row">
         <br>
         <p>
-        <ol class="recent-posts">
+        <ul class="recent-posts">
         {{ range first 5 (where .Data.Pages "Section" "post") }}
-            <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+            <li>
+            {{ partial "post-meta2" . }}</li>
         {{ end }}
-        </ol>
+      </ul>
         </p>
 	</div>
+  <center><a href="{{ .Site.BaseURL }}post/" > See more posts</a></center>
 </section>

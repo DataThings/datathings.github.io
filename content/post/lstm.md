@@ -1,12 +1,12 @@
-+++
-date = "2017-02-17T12:56:49+01:00"
-description = "Different use cases of LSTM neural network"
-title = "The magic of LSTM neural networks"
-categories = ["machine learning"]
-tags = ["lstm", "neural networks", "applications", "text generation", "music generation", "image captioning", "handwriting"]
-author = "Assaad Moawad"
-image = "images/headers/sunset.jpg"
-+++
+---
+date : "2017-02-17T12:56:49+01:00"
+description : "Different use cases of LSTM neural network"
+title : "The magic of LSTM neural networks"
+categories : ["machine learning", "neural networks"]
+tags : ["lstm", "neural networks", "text generation", "music generation", "image captioning", "handwriting"]
+author : "Assaad Moawad"
+image : "images/headers/sunset.jpg"
+---
 
 [LSTM Neural Networks] (https://en.wikipedia.org/wiki/Long_short-term_memory), which stand for **L**ong **S**hort-**T**erm **M**emory, are a particular type of recurrent neural networks that got lot of attention recently within the machine learning community.
 

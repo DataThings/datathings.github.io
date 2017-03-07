@@ -10,7 +10,7 @@ publishDir = "public/blog"
 [params]
 	name = "DataThings"
 	description = "The Datathings Blog: we speak about live data Analytics, machine learning, neural networks, temporal graph databases, modeling, big data."
-	date_format = "2006-01-02"
+	date_format = "15.01.2017"
 	# Add custom assets with their paths relative to the static folder
 	custom_js   = []
 	custom_css  = []
@@ -18,7 +18,7 @@ publishDir = "public/blog"
 		# Replace the avatar with a picture of your own under static/images
 		avatar = "dt_logo_square.svg"
 		# Use Markdown to format the string. This works nearly all over the theme
-		bio = "This is **DataThings** blog,<br />here we share innovations about<br />live data analytics, machine learning,<br />neural networks, temporal graph<br /> databases, big data."
+		bio = "This is **DataThings'** blog,<br />here we share innovations about<br />live data analytics, machine learning,<br />neural networks, temporal graph<br /> databases, big data."
 		# The icons will be shown if you enter your username
 		twitter = "datathingslu"
 		github = "datathings"
@@ -35,7 +35,7 @@ publishDir = "public/blog"
 	[params.about]
 		hide  = false
 		title = "We are DataThings"
-		content = "We are a startup of four passionate researchers holding PhDs in Computer Science. After several years of successful collaboration at the University of Luxembourg/SnT, we founded DataThings to start the next chapter in live data analytics. We aim at improving live analytics over complex and time-evolving data a reality in order to support your businesses in operational decision-making."
+		content = "We are a startup of four passionate researchers holding PhDs in Computer Science. After several years of successful collaboration at the University of Luxembourg/SnT, we founded DataThings to start the next chapter in live data analytics. We aim at improving live analytics over complex and time-evolving data in order to support your businesses in operational decision-making. Please visit <a href=\"https://www.datathings.com\">our website</a> to find out more"
 
 
 	[params.portfolio]
@@ -127,7 +127,7 @@ publishDir = "public/blog"
 	weight = 0
 
 [[menu.main]]
-	name = "Posts"
+	name = "All posts"
 	url  = "post/"
 	weight = 10
 
