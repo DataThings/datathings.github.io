@@ -17,8 +17,6 @@
       <guid>http://datathings.com/blog/post/neuralnet/</guid>
       <description>
 
-&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
-
 &lt;p&gt;Any complex system can be abstracted in a simple way, or at least dissected to its basic abstract components. Complexity arises by the accumulation of several simple layers. The goal of this post, is to explain how neural networks work with the most simple abstraction. We will try to reduce the machine learning mechanism in NN to its basic abstract components. Unlike other posts that explain neural networks, we will try to use the least possible amount of mathematical equations and programming code, and focus only on the abstract concepts.&lt;/p&gt;
 
 &lt;p&gt;A supervised neural network, at the highest and simplest abstract representation, can be presented as a black box with 2 methods learn and predict as following:&lt;/p&gt;
@@ -460,8 +458,6 @@ The difference is that in genetic algorithms, the mutation is blind. Some mutati
       <guid>http://datathings.com/blog/post/lstm/</guid>
       <description>
 
-&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
-
 &lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Long_short-term_memory&#34;&gt;LSTM Neural Networks&lt;/a&gt;, which stand for &lt;strong&gt;L&lt;/strong&gt;ong &lt;strong&gt;S&lt;/strong&gt;hort-&lt;strong&gt;T&lt;/strong&gt;erm &lt;strong&gt;M&lt;/strong&gt;emory, are a particular type of recurrent neural networks that got lot of attention recently within the machine learning community.&lt;/p&gt;
 
 &lt;p&gt;In a simple way, LSTM networks have some internal &lt;strong&gt;contextual state cells&lt;/strong&gt; that act as long-term or short-term memory cells.
@@ -670,7 +666,13 @@ In a nutshell, they created a neural net with an encoder to compress the text to
       <pubDate>Thu, 16 Feb 2017 17:07:36 +0100</pubDate>
       
       <guid>http://datathings.com/blog/post/say-hello/</guid>
-      <description>&lt;p&gt;Hello world!&lt;/p&gt;
+      <description>&lt;p&gt;Hello world, from &lt;strong&gt;DataThings&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;We are a startup of four passionate researchers holding PhDs in Computer Science.
+After several years of successful collaboration at the University of Luxembourg/SnT, we founded DataThings to start the next chapter in live data analytics.
+We aim at improving live analytics over complex and time-evolving data a reality in order to support your businesses in operational decision-making.
+This blog will be kind of our diary on experiments and results we find through our adventure.
+Hope you will enjoy it, feel free to follow us on &lt;a href=&#34;www.twiter.com/datathingslu&#34;&gt;twitter&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     

@@ -16,8 +16,6 @@
       <guid>http://datathings.com/blog/post/lstm/</guid>
       <description>
 
-&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
-
 &lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Long_short-term_memory&#34;&gt;LSTM Neural Networks&lt;/a&gt;, which stand for &lt;strong&gt;L&lt;/strong&gt;ong &lt;strong&gt;S&lt;/strong&gt;hort-&lt;strong&gt;T&lt;/strong&gt;erm &lt;strong&gt;M&lt;/strong&gt;emory, are a particular type of recurrent neural networks that got lot of attention recently within the machine learning community.&lt;/p&gt;
 
 &lt;p&gt;In a simple way, LSTM networks have some internal &lt;strong&gt;contextual state cells&lt;/strong&gt; that act as long-term or short-term memory cells.

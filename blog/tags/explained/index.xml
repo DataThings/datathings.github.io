@@ -16,8 +16,6 @@
       <guid>http://datathings.com/blog/post/neuralnet/</guid>
       <description>
 
-&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
-
 &lt;p&gt;Any complex system can be abstracted in a simple way, or at least dissected to its basic abstract components. Complexity arises by the accumulation of several simple layers. The goal of this post, is to explain how neural networks work with the most simple abstraction. We will try to reduce the machine learning mechanism in NN to its basic abstract components. Unlike other posts that explain neural networks, we will try to use the least possible amount of mathematical equations and programming code, and focus only on the abstract concepts.&lt;/p&gt;
 
 &lt;p&gt;A supervised neural network, at the highest and simplest abstract representation, can be presented as a black box with 2 methods learn and predict as following:&lt;/p&gt;
