@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hello World on Datathings Blog</title>
+    <title>Hello World on Datathings&#39; Blog</title>
     <link>http://datathings.com/blog/tags/hello-world/index.xml</link>
-    <description>Recent content in Hello World on Datathings Blog</description>
+    <description>Recent content in Hello World on Datathings&#39; Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <atom:link href="http://datathings.com/blog/tags/hello-world/index.xml" rel="self" type="application/rss+xml" />

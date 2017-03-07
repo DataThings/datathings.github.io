@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Datathings Blog</title>
+    <title>Datathings&#39; Blog</title>
     <link>http://datathings.com/blog/index.xml</link>
-    <description>Recent content on Datathings Blog</description>
+    <description>Recent content on Datathings&#39; Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 23 Feb 2017 13:48:03 +0100</lastBuildDate>
