@@ -4,8 +4,6 @@
 <a href="{{ .Permalink }}">
 <img src="{{ $.Site.BaseURL }}{{ if .Params.image }}{{.Params.image}}{{ else }}images/headers/default.jpg{{ end }}">
 </a>
-<i class="fa fa-calendar"></i>&nbsp;&nbsp;
-<time datetime="{{ .Date }}">{{ .Date.Format .Site.Params.date_format }}</time>&nbsp;&nbsp;
 {{ if isset .Params "categories" }}
     {{ $categoriesLen := len .Params.categories }}
     {{ if gt $categoriesLen 0 }}
@@ -16,17 +14,16 @@
         {{ end }}
     {{ end }}
 {{ end }}
-<p> {{ .Params.description }}
   </br>
 {{ if isset .Params "tags" }}
    {{ $tagsLen := len .Params.tags }}
    {{ if gt $tagsLen 0 }}
-       &nbsp;&nbsp;<i class="fa fa-tags"></i>&nbsp;&nbsp;
+       <i class="fa fa-tags"></i>&nbsp;&nbsp;
        {{ range $k, $v := .Params.tags }}
        <a class="article-category-link" href="{{ $.Site.BaseURL }}tags/{{ . | urlize | lower }}">{{ . }}</a>
        {{ if lt $k (sub $tagsLen 1) }}&middot;{{ end }}
        {{ end }}
    {{ end }}
 {{ end }}
-</p>
+<p><i class="fa fa-dot-circle-o" aria-hidden="true"></i>&nbsp;&nbsp; {{ .Params.description }}</p>
 <p></p>
