@@ -101,6 +101,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 		<a href="http://datathings.com/blog/post/neuralnet/">
 		<img src="http://datathings.com/blog/images/headers/neural.jpg">
 		</a>
+			<i class="fa fa-user-circle-o"></i>&nbsp;&nbsp;
+			Assaad Moawad &nbsp;&nbsp;
 		<i class="fa fa-calendar"></i>&nbsp;&nbsp;
 		<time datetime="2017-02-23 13:48:03 &#43;0100 CET">23-02-2017</time>&nbsp;&nbsp;
 		
@@ -483,12 +485,12 @@ For sure, we can always create one complicated function that represent the compo
 We have the starting point of errors, which is the loss function, and we know how to derivate it, and if we know how to derivate each function from the composition, we can propagate back the error from the end to the start.
 Let&rsquo;s consider the simple linear example: where we multiply the input 3 times to get a hidden layer, then we multiply the hidden (middle layer) 2 times to get the output.</p>
 
-<p>input -&gt; x 3 -&gt; x 2 -&gt; output.</p>
+<p>input -&gt; 3.x -&gt; 2.x -&gt; output.</p>
 
 <p>A 0.001 delta change on the input, will be translated to a 0.003 delta change after the first layer, then to 0.006 delta change on the output.
 which is the case if we compose both functions into one:</p>
 
-<p>input -&gt; x 6 -&gt; output.</p>
+<p>input -&gt; 6.x -&gt; output.</p>
 
 <p>Similarly an error on the output of 0.006, can be backpropagated to an error of 0.003 in the middle hidden stage, then to 0.001 on the input.
 If we create a library of <strong>differentiable</strong> functions or layers where for each function we know how to forward-propagate (by directly applying the function) and how to back-propagate (by knowing the derivative of the function), we can compose any complex neural network. We only need to keep a stack of the function calls during the forward pass and their parameters, in order to know the way back to backpropagate the errors using the derivatives of these functions. This can be done by de-stacking through the function calls. This technique is called auto-differentiation, and requires only that each function is provided with the implementation of its derivative. In a future blog post, we will explain how to accelerate auto-differentiation by implementing basic mathematical operations over matrices.</p>

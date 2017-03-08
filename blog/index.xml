@@ -379,12 +379,12 @@ For sure, we can always create one complicated function that represent the compo
 We have the starting point of errors, which is the loss function, and we know how to derivate it, and if we know how to derivate each function from the composition, we can propagate back the error from the end to the start.
 Let&amp;rsquo;s consider the simple linear example: where we multiply the input 3 times to get a hidden layer, then we multiply the hidden (middle layer) 2 times to get the output.&lt;/p&gt;
 
-&lt;p&gt;input -&amp;gt; x 3 -&amp;gt; x 2 -&amp;gt; output.&lt;/p&gt;
+&lt;p&gt;input -&amp;gt; 3.x -&amp;gt; 2.x -&amp;gt; output.&lt;/p&gt;
 
 &lt;p&gt;A 0.001 delta change on the input, will be translated to a 0.003 delta change after the first layer, then to 0.006 delta change on the output.
 which is the case if we compose both functions into one:&lt;/p&gt;
 
-&lt;p&gt;input -&amp;gt; x 6 -&amp;gt; output.&lt;/p&gt;
+&lt;p&gt;input -&amp;gt; 6.x -&amp;gt; output.&lt;/p&gt;
 
 &lt;p&gt;Similarly an error on the output of 0.006, can be backpropagated to an error of 0.003 in the middle hidden stage, then to 0.001 on the input.
 If we create a library of &lt;strong&gt;differentiable&lt;/strong&gt; functions or layers where for each function we know how to forward-propagate (by directly applying the function) and how to back-propagate (by knowing the derivative of the function), we can compose any complex neural network. We only need to keep a stack of the function calls during the forward pass and their parameters, in order to know the way back to backpropagate the errors using the derivatives of these functions. This can be done by de-stacking through the function calls. This technique is called auto-differentiation, and requires only that each function is provided with the implementation of its derivative. In a future blog post, we will explain how to accelerate auto-differentiation by implementing basic mathematical operations over matrices.&lt;/p&gt;
