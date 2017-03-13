@@ -1,1 +1,3 @@
 uglifyjs js/modernizr.min.js js/jquery-2.1.1.min.js js/jquery.easing.1.3.min.js js/jquery.animsition.min.js js/smoothscroll.js js/skrollr.min.js js/wow.min.js js/waypoints.min.js js/bootstrap.min.js js/jquery.counterup.min.js js/owl.carousel.min.js js/animateSlider.js js/animated-headlines.js js/jquery.mb.YTPlayer.min.js js/jquery.vide.min.js js/isotope.pkgd.min.js js/nivo-lightbox.min.js js/contactForm.js js/scripts.min.js -o bundle.min.js
+cat css/bootstrap.min.css css/animate.min.css css/magic.min.css css/owl.carousel.min.css css/nivo-lightbox/nivo-lightbox.css css/nivo-lightbox/lightbox-theme.css css/animated-hedlines.css css/YTPlayer.css css/styles.css css/theme/scuba-blue.css css/animsition.min.css > css/bundle.css
+sqwish css/bundle.css -o css/bundle.min.css
