@@ -2,7 +2,7 @@
 title: "Time series decomposition over open weather data from Luxembourg"
 description: "Getting the trend, seasonal and random components from open source weather data of Luxembourg"
 author: "Assaad Moawad"
-date: "2017-03-07T09:29:24+01:00"
+date: "2017-03-15T09:29:24+01:00"
 categories: ["machine learning", "time series"]
 tags: ["time series", "decomposition", "profiling", "trend", "polynomial", "R language", "data analytics", "Luxembourg", "open data"]
 image: "images/headers/thunders2.jpg"
