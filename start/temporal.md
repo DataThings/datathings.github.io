@@ -4,51 +4,57 @@ Many domains, from social networks to cyber-physical systems to enterprise appli
 
 ![temporal graph](temporal_graph.png)
 
-The orange nodes in the graph represent the changes compared to the version before. Over time, both attributes of nodes, i.e., values, as well as the structure of the graph itself can arbitiraly change. Usually, considering only the latest state of a graph is not enough, instead, many applications require to analyse and correlate past data. That is where temporal graphs are required. 
+The orange nodes in the graph represent the changes compared to the version before. Over time, both attributes of the nodes, i.e., values, as well as the structure of the graph itself can change arbitrary. Usually, considering only the latest state of the graph is not enough, instead, many applications require to analyse and correlate past data, or need to navigate through the history to analyse trends. That is where the temporal graphs are required.
 
-First, we create again a graph, just like for the non-temporal example
+First, let's create again a graph, just like for the non-temporal [previous example](minimal.md)
 
 ```java
+//Create a minimal graph with the default configuration
 Graph g = new GraphBuilder().build();
+//Connect the graph
 g.connect(isConnected -> {
-	    //your next code goes here...
+		//Display that the graph database is connected!
+		System.out.println("Connected : " + isConnected);
+		//your next code goes here...
 });
 ```
 
-Then, we specify a time point and create nodes, attributes, and relations
+Then, we specify a time point and create nodes, attributes, and relations at this time 0.
 
 ```java
-long timepoint_0 = 0;
+long timepoint_0 = 0;  //the timestamp is a long and represents the time concept
 
 Node sensor0 = g.newNode(0, timepoint_0); //the second param is the time
-sensor0.set("id", "4494F");
-sensor0.set("name", "sensor0");
-sensor0.set("value", 26.2); //set the value of the sensor
-
-Node room0 = g.newNode(0, timepoint_0); //the second param is the time
-room0.set("name", "room0");
-room0.add("sensors", sensor0);
+sensor0.set("id", Type.STRING, "4494F");
+sensor0.set("name", Type.STRING, "sensor0");
+sensor0.set("value", Type.DOUBLE, 0.5); //set the value of the sensor
 ```
 
-Nodes can be freely 'moved in time'
+Nodes can freely 'travel in time'. This operation will create a temporal view of the node at the requested time.
+Each travel in time operation is asynchronous and returns in the callback a new node (here called sensor0T1) which is the new version of the node sensor0 but as resolved for the requested time T1.
 
 ```java
-sensor0.jump(System.currentTimeMillis(), (Node sensor0now) -> {
-	sensor0now.set("value", 27.5); //update the value to time: now
-	System.out.println("T0:" + sensor0.toString());
-	System.out.println("Now:" + sensor0now.toString());
+long timepoint_1 = 100;
+sensor0.travelInTime(timepoint_1, (Node sensor0T1) -> {
+		sensor0T1.set("value", Type.DOUBLE, 21.3); //update the value of the time now
+		//Display the value at time 0
+		System.out.println("T0:" + sensor0.toString()); //print T0:{"world":0,"time":0,"id":1,"id":"4494F","name":"sensor0","value":0.5}
+		//Display the value at time now
+		System.out.println("T1:" + sensor0T1.toString()); //print T1:{"world":0,"time":100,"id":1,"id":"4494F","name":"sensor0","value":21.3}
 
-	//now jump over the room
-	room0.jump(System.currentTimeMillis(), room0now -> {
-		System.out.println("RoomNow:");
-		room0now.rel("sensors", sensorsNow -> {
-			for(Node sensorNow : sensorsNow){
-				System.out.println("\t"+sensorNow.toString());
-			}
-		 });
-	});
+		//your next code goes here...
 });
 ```
 
-The method *jump* can be used to resolve a node at an arbitrary time point. In the example above, the node *room0* is resolved at the current time. The last valid version of *room0*, relative to the time asked (current time) is *room0* at time point 0. This version is transparently resolved. The graph can be freely traversed from this node and it automatically the correct versions of the traversed nodes are resolved. 
+Here we can see, that the same sensor 0, resolve a value of 0.5 at time 0 and a different value of 21.3 at time T1=100.
 
+The method *travelInTime* can be used to resolve any node at an arbitrary time point. The default behavior of this function is to resolve efficiently the latest known version of the requested node up till the requested time.
+Notice that we didn't need to set the attributes ID and names again at time T1. Since we didn't modify them, the resolver keep the last known values as set at tune T0.
+As an example, if we go to time T2=50 with (T0<T2<T1), without modifying the values, the resolver will display the information as it was at the last known time before T2 (which is T0)
+
+```java
+long timepoint_2= 50;
+				 sensor0.travelInTime(timepoint_2, (Node sensor0T2) ->{
+						 System.out.println("T2:" + sensor0T2.toString()); //prints T2:{"world":0,"time":50,"id":1,"id":"4494F","name":"sensor0","value":0.5}
+				 });
+```
