@@ -12,4 +12,4 @@ cd public/
 git add -A
 MESSAGE="documentation rebuild $(date)"
 git commit -m "$MESSAGE"
-#git push
+git push

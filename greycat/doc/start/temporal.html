@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Temporal graph · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Temporal graph · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.1.0">
+        <meta name="generator" content="GitBook 3.2.2">
         
         
         
@@ -510,43 +510,47 @@
                                 <h1 id="temporal-graphs">Temporal graphs</h1>
 <p>Many domains, from social networks to cyber-physical systems to enterprise applications, need to deal with dynamic, i.e., time-evolving data. Think of a time-evolving graph like the following figure:</p>
 <p><img src="temporal_graph.png" alt="temporal graph"></p>
-<p>The orange nodes in the graph represent the changes compared to the version before. Over time, both attributes of nodes, i.e., values, as well as the structure of the graph itself can arbitiraly change. Usually, considering only the latest state of a graph is not enough, instead, many applications require to analyse and correlate past data. That is where temporal graphs are required. </p>
-<p>First, we create again a graph, just like for the non-temporal example</p>
-<pre><code class="lang-java">Graph g = <span class="hljs-keyword">new</span> GraphBuilder().build();
+<p>The orange nodes in the graph represent the changes compared to the version before. Over time, both attributes of the nodes, i.e., values, as well as the structure of the graph itself can change arbitrary. Usually, considering only the latest state of the graph is not enough, instead, many applications require to analyse and correlate past data, or need to navigate through the history to analyse trends. That is where the temporal graphs are required.</p>
+<p>First, let&apos;s create again a graph, just like for the non-temporal <a href="minimal.html">previous example</a></p>
+<pre><code class="lang-java"><span class="hljs-comment">//Create a minimal graph with the default configuration</span>
+Graph g = <span class="hljs-keyword">new</span> GraphBuilder().build();
+<span class="hljs-comment">//Connect the graph</span>
 g.connect(isConnected -&gt; {
+        <span class="hljs-comment">//Display that the graph database is connected!</span>
+        System.out.println(<span class="hljs-string">&quot;Connected : &quot;</span> + isConnected);
         <span class="hljs-comment">//your next code goes here...</span>
 });
 </code></pre>
-<p>Then, we specify a time point and create nodes, attributes, and relations</p>
-<pre><code class="lang-java"><span class="hljs-keyword">long</span> timepoint_0 = <span class="hljs-number">0</span>;
+<p>Then, we specify a time point and create nodes, attributes, and relations at this time 0.</p>
+<pre><code class="lang-java"><span class="hljs-keyword">long</span> timepoint_0 = <span class="hljs-number">0</span>;  <span class="hljs-comment">//the timestamp is a long and represents the time concept</span>
 
 Node sensor0 = g.newNode(<span class="hljs-number">0</span>, timepoint_0); <span class="hljs-comment">//the second param is the time</span>
-sensor0.set(<span class="hljs-string">&quot;id&quot;</span>, <span class="hljs-string">&quot;4494F&quot;</span>);
-sensor0.set(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;sensor0&quot;</span>);
-sensor0.set(<span class="hljs-string">&quot;value&quot;</span>, <span class="hljs-number">26.2</span>); <span class="hljs-comment">//set the value of the sensor</span>
-
-Node room0 = g.newNode(<span class="hljs-number">0</span>, timepoint_0); <span class="hljs-comment">//the second param is the time</span>
-room0.set(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;room0&quot;</span>);
-room0.add(<span class="hljs-string">&quot;sensors&quot;</span>, sensor0);
+sensor0.set(<span class="hljs-string">&quot;id&quot;</span>, Type.STRING, <span class="hljs-string">&quot;4494F&quot;</span>);
+sensor0.set(<span class="hljs-string">&quot;name&quot;</span>, Type.STRING, <span class="hljs-string">&quot;sensor0&quot;</span>);
+sensor0.set(<span class="hljs-string">&quot;value&quot;</span>, Type.DOUBLE, <span class="hljs-number">0.5</span>); <span class="hljs-comment">//set the value of the sensor</span>
 </code></pre>
-<p>Nodes can be freely &apos;moved in time&apos;</p>
-<pre><code class="lang-java">sensor0.jump(System.currentTimeMillis(), (Node sensor0now) -&gt; {
-    sensor0now.set(<span class="hljs-string">&quot;value&quot;</span>, <span class="hljs-number">27.5</span>); <span class="hljs-comment">//update the value to time: now</span>
-    System.out.println(<span class="hljs-string">&quot;T0:&quot;</span> + sensor0.toString());
-    System.out.println(<span class="hljs-string">&quot;Now:&quot;</span> + sensor0now.toString());
+<p>Nodes can freely &apos;travel in time&apos;. This operation will create a temporal view of the node at the requested time.
+Each travel in time operation is asynchronous and returns in the callback a new node (here called sensor0T1) which is the new version of the node sensor0 but as resolved for the requested time T1.</p>
+<pre><code class="lang-java"><span class="hljs-keyword">long</span> timepoint_1 = <span class="hljs-number">100</span>;
+sensor0.travelInTime(timepoint_1, (Node sensor0T1) -&gt; {
+        sensor0T1.set(<span class="hljs-string">&quot;value&quot;</span>, Type.DOUBLE, <span class="hljs-number">21.3</span>); <span class="hljs-comment">//update the value of the time now</span>
+        <span class="hljs-comment">//Display the value at time 0</span>
+        System.out.println(<span class="hljs-string">&quot;T0:&quot;</span> + sensor0.toString()); <span class="hljs-comment">//print T0:{&quot;world&quot;:0,&quot;time&quot;:0,&quot;id&quot;:1,&quot;id&quot;:&quot;4494F&quot;,&quot;name&quot;:&quot;sensor0&quot;,&quot;value&quot;:0.5}</span>
+        <span class="hljs-comment">//Display the value at time now</span>
+        System.out.println(<span class="hljs-string">&quot;T1:&quot;</span> + sensor0T1.toString()); <span class="hljs-comment">//print T1:{&quot;world&quot;:0,&quot;time&quot;:100,&quot;id&quot;:1,&quot;id&quot;:&quot;4494F&quot;,&quot;name&quot;:&quot;sensor0&quot;,&quot;value&quot;:21.3}</span>
 
-    <span class="hljs-comment">//now jump over the room</span>
-    room0.jump(System.currentTimeMillis(), room0now -&gt; {
-        System.out.println(<span class="hljs-string">&quot;RoomNow:&quot;</span>);
-        room0now.rel(<span class="hljs-string">&quot;sensors&quot;</span>, sensorsNow -&gt; {
-            <span class="hljs-keyword">for</span>(Node sensorNow : sensorsNow){
-                System.out.println(<span class="hljs-string">&quot;\t&quot;</span>+sensorNow.toString());
-            }
-         });
-    });
+        <span class="hljs-comment">//your next code goes here...</span>
 });
 </code></pre>
-<p>The method <em>jump</em> can be used to resolve a node at an arbitrary time point. In the example above, the node <em>room0</em> is resolved at the current time. The last valid version of <em>room0</em>, relative to the time asked (current time) is <em>room0</em> at time point 0. This version is transparently resolved. The graph can be freely traversed from this node and it automatically the correct versions of the traversed nodes are resolved. </p>
+<p>Here we can see, that the same sensor 0, resolve a value of 0.5 at time 0 and a different value of 21.3 at time T1=100.</p>
+<p>The method <em>travelInTime</em> can be used to resolve any node at an arbitrary time point. The default behavior of this function is to resolve efficiently the latest known version of the requested node up till the requested time.
+Notice that we didn&apos;t need to set the attributes ID and names again at time T1. Since we didn&apos;t modify them, the resolver keep the last known values as set at tune T0.
+As an example, if we go to time T2=50 with (T0&lt;T2&lt;T1), without modifying the values, the resolver will display the information as it was at the last known time before T2 (which is T0)</p>
+<pre><code class="lang-java"><span class="hljs-keyword">long</span> timepoint_2= <span class="hljs-number">50</span>;
+                 sensor0.travelInTime(timepoint_2, (Node sensor0T2) -&gt;{
+                         System.out.println(<span class="hljs-string">&quot;T2:&quot;</span> + sensor0T2.toString()); <span class="hljs-comment">//prints T2:{&quot;world&quot;:0,&quot;time&quot;:50,&quot;id&quot;:1,&quot;id&quot;:&quot;4494F&quot;,&quot;name&quot;:&quot;sensor0&quot;,&quot;value&quot;:0.5}</span>
+                 });
+</code></pre>
 
                                 
                                 </section>
@@ -590,7 +594,7 @@ room0.add(<span class="hljs-string">&quot;sensors&quot;</span>, sensor0);
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Temporal graph","level":"1.2.2","depth":2,"next":{"title":"Many world graph","level":"1.2.3","depth":2,"path":"start/manyworld.md","ref":"start/manyworld.md","articles":[]},"previous":{"title":"First minimal graph","level":"1.2.1","depth":2,"path":"start/minimal.md","ref":"start/minimal.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/greycat.css"}},"file":{"path":"start/temporal.md","mtime":"2017-02-07T04:36:30.000Z","type":"markdown"},"gitbook":{"version":"3.1.0","time":"2017-03-14T08:51:29.133Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Temporal graph","level":"1.2.2","depth":2,"next":{"title":"Many world graph","level":"1.2.3","depth":2,"path":"start/manyworld.md","ref":"start/manyworld.md","articles":[]},"previous":{"title":"First minimal graph","level":"1.2.1","depth":2,"path":"start/minimal.md","ref":"start/minimal.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/greycat.css"}},"file":{"path":"start/temporal.md","mtime":"2017-03-17T14:24:42.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-03-17T15:07:02.264Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
