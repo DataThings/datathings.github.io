@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://datathings.com/blog/post/weatherlux/</loc>
+    <lastmod>2017-03-22T14:29:24+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://datathings.com/blog/post/neuralnet/</loc>
     <lastmod>2017-02-23T13:48:03+01:00</lastmod>
   </url>
@@ -34,8 +39,20 @@
   </url>
   
   <url>
+    <loc>http://datathings.com/blog/tags/data-analytics/</loc>
+    <lastmod>2017-03-22T14:29:24+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://datathings.com/blog/</loc>
-    <lastmod>2017-02-23T13:48:03+01:00</lastmod>
+    <lastmod>2017-03-22T14:29:24+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://datathings.com/blog/tags/decomposition/</loc>
+    <lastmod>2017-03-22T14:29:24+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -70,8 +87,14 @@
   </url>
   
   <url>
+    <loc>http://datathings.com/blog/tags/luxembourg/</loc>
+    <lastmod>2017-03-22T14:29:24+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://datathings.com/blog/categories/machine-learning/</loc>
-    <lastmod>2017-02-23T13:48:03+01:00</lastmod>
+    <lastmod>2017-03-22T14:29:24+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -94,8 +117,32 @@
   </url>
   
   <url>
+    <loc>http://datathings.com/blog/tags/open-data/</loc>
+    <lastmod>2017-03-22T14:29:24+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://datathings.com/blog/tags/polynomial/</loc>
+    <lastmod>2017-03-22T14:29:24+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://datathings.com/blog/post/</loc>
-    <lastmod>2017-02-23T13:48:03+01:00</lastmod>
+    <lastmod>2017-03-22T14:29:24+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://datathings.com/blog/tags/profiling/</loc>
+    <lastmod>2017-03-22T14:29:24+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://datathings.com/blog/tags/r-language/</loc>
+    <lastmod>2017-03-22T14:29:24+01:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -107,6 +154,24 @@
   <url>
     <loc>http://datathings.com/blog/tags/text-generation/</loc>
     <lastmod>2017-02-17T12:56:49+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://datathings.com/blog/tags/time-series/</loc>
+    <lastmod>2017-03-22T14:29:24+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://datathings.com/blog/categories/time-series/</loc>
+    <lastmod>2017-03-22T14:29:24+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://datathings.com/blog/tags/trend/</loc>
+    <lastmod>2017-03-22T14:29:24+01:00</lastmod>
     <priority>0</priority>
   </url>
   

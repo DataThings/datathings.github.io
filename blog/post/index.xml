@@ -6,8 +6,57 @@
     <description>Recent content in Posts on Datathings&#39; Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 23 Feb 2017 13:48:03 +0100</lastBuildDate>
+    <lastBuildDate>Wed, 22 Mar 2017 14:29:24 +0100</lastBuildDate>
     <atom:link href="http://datathings.com/blog/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Time series decomposition over open weather data from Luxembourg</title>
+      <link>http://datathings.com/blog/post/weatherlux/</link>
+      <pubDate>Wed, 22 Mar 2017 14:29:24 +0100</pubDate>
+      
+      <guid>http://datathings.com/blog/post/weatherlux/</guid>
+      <description>&lt;p&gt;Time series decomposition is a powerful statistical method that decomposes a signal into several components (usually a trend, a periodic and a random component).
+These components can be used to do forecasting, prediction or extrapolation of missing data.&lt;/p&gt;
+
+&lt;p&gt;This topic is relatively old, since the &lt;a href=&#34;http://www.nniiem.ru/file/news/2016/stl-statistical-model.pdf&#34;&gt;main research paper&lt;/a&gt; in the field dates back to 1990.
+In R language, one of the most famous function for time series decomposition is the &lt;a href=&#34;https://www.r-bloggers.com/time-series-decomposition/&#34;&gt;stl function&lt;/a&gt;.
+More recently, Facebook has released an open source framework written in python called &lt;a href=&#34;https://research.fb.com/prophet-forecasting-at-scale/&#34;&gt;prophet&lt;/a&gt; for time series decomposition that is a little bit more advanced than the stl function, since it can take into account anomalies caused by non-periodic rare events.&lt;/p&gt;
+
+&lt;p&gt;At &lt;a href=&#34;www.datathings.com&#34;&gt;datathings&lt;/a&gt;, we are experimenting with a different approach of time series decomposition. Since we aim at enabling live data analytics, we developed our own technology that uses online and live machine learning techniques to decompose time series on the fly. For the trend component we use a live polynomial learning algorithm, and for the periodic component we use a Gaussian Mixture Model (GMM) live profiling. The random component is what is left from signal after we remove the trend and the periodic component.&lt;/p&gt;
+
+&lt;p&gt;In order to see the results of the time series decomposition, we will use the open weather dataset of Luxembourg provided by &lt;a href=&#34;https://data.public.lu/en/&#34;&gt;Open Data Luxembourg&lt;/a&gt;. The dataset consists of the historical monthly average of temperature records in Luxembourg since January 1947 and can be downloaded for free from &lt;a href=&#34;https://data.public.lu/en/datasets/monthly-meteorological-parameters-luxembourg-findel-airport-wmo-id-06590/&#34;&gt;here&lt;/a&gt;. Here is the plot of the temperature data:&lt;/p&gt;
+
+&lt;iframe width=&#34;900&#34; height=&#34;800&#34; frameborder=&#34;0&#34; scrolling=&#34;no&#34; src=&#34;https://plot.ly/~datathings/10.embed&#34;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Due to earth periodic nature of the yearly rotation of earth around the sun, it is very hard to see from this graph the temperature trend over the years. Time series decomposition helps extracting the periodic component from the signal.
+After passing it through a Gaussian profile, we can detect this periodic component. In January, the temperature average in Luxembourg  is around 0.5 °C, it raises to 17.5 °C in August, then falls down back to 0.5 °C in average for the January of the next year. Here is the result (we only show 2 years here for simplicity):&lt;/p&gt;
+
+&lt;iframe width=&#34;900&#34; height=&#34;800&#34; frameborder=&#34;0&#34; scrolling=&#34;no&#34; src=&#34;https://plot.ly/~datathings/11.embed&#34;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;After filtering out this periodic signal, we can then fit a polynomial curve of the temperature trend over the years.&lt;/p&gt;
+
+&lt;iframe width=&#34;900&#34; height=&#34;800&#34; frameborder=&#34;0&#34; scrolling=&#34;no&#34; src=&#34;https://plot.ly/~datathings/12.embed&#34;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;As you can see from the graph, the temperature trend curve was stable till 1980s, then it increased by 2 degrees the last 36 years.
+After removing the periodic and the trend signals from the original data, we are left with the random remainder. Here is what it looks like:&lt;/p&gt;
+
+&lt;iframe width=&#34;900&#34; height=&#34;800&#34; frameborder=&#34;0&#34; scrolling=&#34;no&#34; src=&#34;https://plot.ly/~datathings/13.embed&#34;&gt;&lt;/iframe&gt;
+
+&lt;p&gt;The interesting aspect about the random component is that it has an average value of 0. This is perfectly logical, since the time series decomposition goal is to move the average value of the signal to the periodic and linear trend.&lt;/p&gt;
+
+&lt;p&gt;In order to see the benefit of time series decomposition, we consider that our predictive model is the sum of the trend + periodic component. If we plot this predictive model (in orange) vs the real data in (blue) we get the following graph:
+&lt;iframe width=&#34;900&#34; height=&#34;800&#34; frameborder=&#34;0&#34; scrolling=&#34;no&#34; src=&#34;https://plot.ly/~datathings/14.embed&#34;&gt;&lt;/iframe&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally, to validate our results, we run the time series decomposition stl function in R and using facebook Prophet, the results are displayed in the figures below.
+They both confirm our result of increase in temperature of 2 degrees over the last 36 years. However both processes in R and with facebook prophet took more time to execute than our live approach and require to load the full dataset before learning.&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;Decomposition in R:&lt;/center&gt;
+&lt;img src=&#34;../../images/weatherlux/decomposition.png&#34; alt=&#34;Decomposition in R&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;center&gt;Decomposition using Facebook Prophet:&lt;/center&gt;
+&lt;img src=&#34;../../images/weatherlux/facebook.png&#34; alt=&#34;Decomposition in R&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Neural networks and backpropagation explained in a simple way</title>
