@@ -44,5 +44,5 @@ roomIndex.find(rooms -> {
     for (Node room : rooms) {
         System.out.println(room);
     }
-},"name","kitchen"); //here we ask to filter only the node with name = kitchen.
+},"name","kitchen"); //here we ask to filter only the node with the name = kitchen.
 ```
