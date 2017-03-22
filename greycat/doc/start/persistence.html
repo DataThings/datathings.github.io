@@ -508,26 +508,37 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="persistence">Persistence</h1>
-<p>MWG comes with a built-in persistence mechanism. Nodes and relationships are automatically serialized and unserialized by MWG and can be stored in different key/value stores. The following example shows how MWG is configured to use Google&apos;s LevelDB as a storage backend.  </p>
+<p><a href="https://github.com/datathings/greycat-samples/blob/master/src/main/java/greycat/samples/Persistance.java" target="_blank">Code sample here</a></p>
+<p>Greycat comes with a built-in persistence mechanism. Nodes and relationships are automatically serialized and unserialized by  and can be stored in different key/value stores. The following example shows how  is configured to use Google&apos;s LevelDB as a storage backend.  </p>
 <pre><code class="lang-java">Graph g = <span class="hljs-keyword">new</span> GraphBuilder()
-    .withMemorySize(<span class="hljs-number">10000</span>) <span class="hljs-comment">//cache size before sync to disk</span>
-    .withStorage(<span class="hljs-keyword">new</span> LevelDBStorage(<span class="hljs-string">&quot;mwg_db&quot;</span>))
-    .build();
+                .withMemorySize(<span class="hljs-number">10000</span>) <span class="hljs-comment">//cache size before sync to disk</span>
+                .withStorage(<span class="hljs-keyword">new</span> LevelDBStorage(<span class="hljs-string">&quot;greycat_db&quot;</span>)) <span class="hljs-comment">//location to store on disc</span>
+                .build();
 
 g.connect(isConnected -&gt; {
-    Node sensor = g.newNode(<span class="hljs-number">0</span>, System.currentTimeMillis()); <span class="hljs-comment">//create a new node for world 0 and time 0</span>
-    sensor.set(<span class="hljs-string">&quot;id&quot;</span>, Math.abs(rand.nextInt()));
-    sensor.set(<span class="hljs-string">&quot;value&quot;</span>, rand.nextInt());
-    g.index(<span class="hljs-string">&quot;sensors&quot;</span>, sensor, <span class="hljs-string">&quot;id&quot;</span>, res -&gt; {
-        g.save(saveResult -&gt; {
-            g.findAll(<span class="hljs-number">0</span>, System.currentTimeMillis(), <span class="hljs-string">&quot;sensors&quot;</span>, allSensorsNow -&gt; {
-                System.out.println(<span class="hljs-string">&quot;All sensors indexed:&quot;</span>);
-                <span class="hljs-keyword">for</span> (Node sensorNow : allSensorsNow) {
-                    System.out.println(<span class="hljs-string">&quot;\t&quot;</span> + sensorNow.toString());
-                }
-            });
+
+        Node sensor = g.newNode(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>); <span class="hljs-comment">//create new node for world 0 and time 0</span>
+        sensor.set(<span class="hljs-string">&quot;id&quot;</span>, Type.INT, Math.abs(rand.nextInt()));
+        sensor.set(<span class="hljs-string">&quot;value&quot;</span>, Type.INT, rand.nextInt());
+
+        g.index(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-string">&quot;sensors&quot;</span>, nodeIndex -&gt; {
+                nodeIndex.addToIndex(sensor);
+                <span class="hljs-comment">//save the database here.</span>
+                g.save(saveResult -&gt; {
+                        g.index(<span class="hljs-number">0</span>, System.currentTimeMillis(), <span class="hljs-string">&quot;sensors&quot;</span>, nodeIndex2 -&gt; {
+                                nodeIndex2.find(<span class="hljs-keyword">new</span> Callback&lt;Node[]&gt;() {
+                                        <span class="hljs-meta">@Override</span>
+                                        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">on</span><span class="hljs-params">(Node[] result)</span> </span>{
+                                              <span class="hljs-comment">//Get all the nodes stored on disk, each execution will increase the list</span>
+                                                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; result.length; i++) {
+                                                        System.out.println(<span class="hljs-string">&quot;\t&quot;</span> + result[i].toString());
+                                                }
+                                        }
+                                });
+
+                        });
+                });
         });
-    });
 });
 </code></pre>
 
@@ -573,7 +584,7 @@ g.connect(isConnected -&gt; {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Persistence","level":"1.2.4","depth":2,"next":{"title":"Indexing","level":"1.2.5","depth":2,"path":"start/indexing.md","ref":"start/indexing.md","articles":[]},"previous":{"title":"Many world graph","level":"1.2.3","depth":2,"path":"start/manyworld.md","ref":"start/manyworld.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/greycat.css"}},"file":{"path":"start/persistence.md","mtime":"2017-03-17T14:24:42.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-03-17T15:07:02.264Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Persistence","level":"1.2.4","depth":2,"next":{"title":"Indexing","level":"1.2.5","depth":2,"path":"start/indexing.md","ref":"start/indexing.md","articles":[]},"previous":{"title":"Many world graph","level":"1.2.3","depth":2,"path":"start/manyworld.md","ref":"start/manyworld.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/greycat.css"}},"file":{"path":"start/persistence.md","mtime":"2017-03-22T10:35:20.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-03-22T10:36:14.217Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

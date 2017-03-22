@@ -508,29 +508,54 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="many-world-graphs">Many-world graphs</h1>
+<p><a href="https://github.com/datathings/greycat-samples/blob/master/src/main/java/greycat/samples/ManyWorld.java" target="_blank">Code sample here</a></p>
 <p>Prescriptive analytics call for efficient solutions to explore alternative futures, which inevitably diverge when exploring the effects of <em>what-if</em> decisions. This is shown in the following figure:</p>
 <p><img src="many_world_graph.png" alt=""></p>
-<p>The concept of many-world graphs allows to efficiently fork and update thousands of parallel worlds, even for temporal graphs. </p>
-<p>First, we create again a graph, just like for a simple graph</p>
+<p>The concept of many-world graphs allows to efficiently fork and update thousands of parallel worlds, even for temporal graphs.</p>
+<p>First, we create again a graph, just like for a simple or temporal graph</p>
 <pre><code class="lang-java">Graph g = <span class="hljs-keyword">new</span> GraphBuilder().build();
 g.connect(isConnected -&gt; {
         <span class="hljs-comment">//your next code goes here...</span>
 });
 </code></pre>
-<p>Then, we specify a time point and  a world and create nodes, attributes, and relations. </p>
+<p>Then, we specify a time point and a world and create nodes, attributes, and relations for this world at this time.</p>
 <pre><code class="lang-java"><span class="hljs-keyword">long</span> timepoint_0 = <span class="hljs-number">0</span>;
-<span class="hljs-keyword">long</span> world_0 = <span class="hljs-number">0</span>; <span class="hljs-comment">//identifies an alternative</span>
+<span class="hljs-keyword">long</span> world_0 = <span class="hljs-number">0</span>; <span class="hljs-comment">//identifies the main world 0;</span>
 
 Node sensor0 = g.newNode(world_0, timepoint_0); <span class="hljs-comment">//the first param is the world</span>
-sensor0.set(<span class="hljs-string">&quot;id&quot;</span>, <span class="hljs-string">&quot;4494F&quot;</span>);
-sensor0.set(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;sensor0&quot;</span>);
-sensor0.set(<span class="hljs-string">&quot;value&quot;</span>, <span class="hljs-number">26.2</span>); <span class="hljs-comment">//set the value of the sensor</span>
-
-Node room0 = g.newNode(world_0, timepoint_0); <span class="hljs-comment">//the first param is the word</span>
-room0.set(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;room0&quot;</span>);
-room0.add(<span class="hljs-string">&quot;sensors&quot;</span>, sensor0);
+sensor0.set(<span class="hljs-string">&quot;id&quot;</span>, Type.STRING, <span class="hljs-string">&quot;4494F&quot;</span>);
+sensor0.set(<span class="hljs-string">&quot;name&quot;</span>, Type.STRING, <span class="hljs-string">&quot;sensor0&quot;</span>);
+sensor0.set(<span class="hljs-string">&quot;value&quot;</span>, Type.DOUBLE, <span class="hljs-number">0.5</span>); <span class="hljs-comment">//set the value of the sensor</span>
 </code></pre>
-<p>In this example, node <em>sensor0</em> and <em>room0</em> is created in <em>world_0</em>. Other worlds are not impacted by this change. This allows to efficiently create alternative worlds. The jump function can be used to select an arbitrary node within a world. </p>
+<p>In this example, node <em>sensor0</em> is created in <em>world_0</em>. Let&apos;s say we want to do a simulation to test what will happen to the system if we have the value of the sensor equal to 4.6.
+So first, we fork the current world as following:</p>
+<pre><code class="lang-java"><span class="hljs-keyword">long</span> world_1 = g.fork(world_0);
+</code></pre>
+<p>Then we ask the node <em>sensor0</em> to travel to this world_1 and set its results to 4.6</p>
+<pre><code class="lang-java">sensor0.travelInWorld(world_1, <span class="hljs-keyword">new</span> Callback&lt;Node&gt;() {
+          <span class="hljs-meta">@Override</span>
+          <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">on</span><span class="hljs-params">(Node sensorW1T0)</span> </span>{
+               sensorW1T0.set(<span class="hljs-string">&quot;value&quot;</span>, Type.DOUBLE, <span class="hljs-number">4.6</span>);
+               <span class="hljs-comment">//your next code goes here...</span>
+          }
+      });
+</code></pre>
+<p>Finally to test the values, in both world, we can travel at a future date and check the results.</p>
+<pre><code class="lang-java"><span class="hljs-keyword">long</span> timepoint_1=<span class="hljs-number">10</span>;
+sensorW1T0.travel(world_0, timepoint_1, <span class="hljs-keyword">new</span> Callback&lt;Node&gt;() {
+  <span class="hljs-meta">@Override</span>
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">on</span><span class="hljs-params">(Node sensorW0T1)</span> </span>{
+      System.out.println(sensorW0T1); <span class="hljs-comment">// print {&quot;world&quot;:0,&quot;time&quot;:10,&quot;id&quot;:1,&quot;id&quot;:&quot;4494F&quot;,&quot;name&quot;:&quot;sensor0&quot;,&quot;value&quot;:0.5}</span>
+      sensorW0T1.travel(world_1, timepoint_1, <span class="hljs-keyword">new</span> Callback&lt;Node&gt;() {
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">on</span><span class="hljs-params">(Node sensorW1T1)</span> </span>{
+            System.out.println(sensorW1T1); <span class="hljs-comment">//print {&quot;world&quot;:1,&quot;time&quot;:10,&quot;id&quot;:1,&quot;id&quot;:&quot;4494F&quot;,&quot;name&quot;:&quot;sensor0&quot;,&quot;value&quot;:4.6}</span>
+          }
+        });
+      }
+    });
+</code></pre>
+<p>At time 10, sensor0 still have the value 0.5 in the original world_0, but it has the value of 4.6 in the world_1. This many-world option allows us to simulate a large number of alternatives when searching for an optimal solution without stopping the data collection.</p>
 
                                 
                                 </section>
@@ -574,7 +599,7 @@ room0.add(<span class="hljs-string">&quot;sensors&quot;</span>, sensor0);
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Many world graph","level":"1.2.3","depth":2,"next":{"title":"Persistence","level":"1.2.4","depth":2,"path":"start/persistence.md","ref":"start/persistence.md","articles":[]},"previous":{"title":"Temporal graph","level":"1.2.2","depth":2,"path":"start/temporal.md","ref":"start/temporal.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/greycat.css"}},"file":{"path":"start/manyworld.md","mtime":"2017-03-17T14:24:42.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-03-17T15:07:02.264Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Many world graph","level":"1.2.3","depth":2,"next":{"title":"Persistence","level":"1.2.4","depth":2,"path":"start/persistence.md","ref":"start/persistence.md","articles":[]},"previous":{"title":"Temporal graph","level":"1.2.2","depth":2,"path":"start/temporal.md","ref":"start/temporal.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/greycat.css"}},"file":{"path":"start/manyworld.md","mtime":"2017-03-22T08:52:20.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-03-22T10:36:14.217Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
