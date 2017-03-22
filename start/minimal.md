@@ -59,4 +59,4 @@ g.disconnect(result -> {
 });
 ```
 
-Note that graph processing and traversing is fully asynchronous. So all operations are done inside of callbacks in order not to block the code execution. The [next tutorial](temporal.md) explores the temporal aspect of our graph database.
+Note that graph processing and traversing is fully asynchronous. So all operations are done inside of callbacks in order not to block the code execution.

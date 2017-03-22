@@ -1,4 +1,4 @@
-# Many-world graphs
+# Many-World graphs
 [Code sample here](https://github.com/datathings/greycat-samples/blob/master/src/main/java/greycat/samples/ManyWorld.java)
 
 Prescriptive analytics call for efficient solutions to explore alternative futures, which inevitably diverge when exploring the effects of *what-if* decisions. This is shown in the following figure:
