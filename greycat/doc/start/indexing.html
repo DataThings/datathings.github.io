@@ -49,10 +49,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="distributed.html" />
+    <link rel="next" href="persistence.html" />
     
     
-    <link rel="prev" href="persistence.html" />
+    <link rel="prev" href="manyworld.html" />
     
 
     </head>
@@ -139,7 +139,7 @@
                 <a href="manyworld.html">
             
                     
-                    Many world graph
+                    Many-World graph
             
                 </a>
             
@@ -147,25 +147,25 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.4" data-path="persistence.html">
-            
-                <a href="persistence.html">
-            
-                    
-                    Persistence
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter active" data-level="1.2.5" data-path="indexing.html">
+        <li class="chapter active" data-level="1.2.4" data-path="indexing.html">
             
                 <a href="indexing.html">
             
                     
                     Indexing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="persistence.html">
+            
+                <a href="persistence.html">
+            
+                    
+                    Persistence
             
                 </a>
             
@@ -508,47 +508,43 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="indexing">Indexing</h1>
-<p> allows to index your data for efficient retrieval. Indexing is straightforward. Basically, an index node is a graph node, just like all other nodes. This also implies that index nodes are temporal, i.e., what is indexed by a node depends on the time the index was created (and also the world in which the index was created). </p>
-<pre><code class="lang-java">    Node sensor0 = g.newNode(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
-    sensor0.set(<span class="hljs-string">&quot;id&quot;</span>, <span class="hljs-string">&quot;4494F&quot;</span>);
-    sensor0.set(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;sensor0&quot;</span>);
-    sensor0.set(<span class="hljs-string">&quot;value&quot;</span>, <span class="hljs-number">26.2</span>); <span class="hljs-comment">//set the value of the sensor</span>
+<p><a href="https://github.com/datathings/greycat-samples/blob/master/src/main/java/greycat/samples/Index.java" target="_blank">Code sample here</a></p>
+<p>Indexing data enables fast and efficient retrieval. Indexing in GreyCat is very straightforward. Basically, a NodeIndex is a graph node, just like all other nodes but with additional methods to add, remove and find indexed nodes.
+This also implies that a NodeIndex is also temporal, i.e., what is indexed by a node depends on the time the index was created (and also the world in which the index was created).</p>
+<pre><code class="lang-java">Node sensor0 = g.newNode(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+sensor0.set(<span class="hljs-string">&quot;sensorId&quot;</span>, Type.STRING, <span class="hljs-string">&quot;4494F&quot;</span>);
+sensor0.set(<span class="hljs-string">&quot;name&quot;</span>, Type.STRING, <span class="hljs-string">&quot;sensor0&quot;</span>);
+sensor0.set(<span class="hljs-string">&quot;value&quot;</span>, Type.DOUBLE, <span class="hljs-number">26.2</span>); <span class="hljs-comment">//set the value of the sensor</span>
 
-    Node room0 = g.newNode(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
-    room0.set(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;room0&quot;</span>);
-    room0.add(<span class="hljs-string">&quot;sensors&quot;</span>, sensor0);
+Node kitchenNode = g.newNode(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+kitchenNode.set(<span class="hljs-string">&quot;name&quot;</span>, Type.STRING, <span class="hljs-string">&quot;kitchen&quot;</span>);
+kitchenNode.addToRelation(<span class="hljs-string">&quot;sensors&quot;</span>, sensor0);
 
-    g.index(<span class="hljs-string">&quot;rooms&quot;</span>, room0, <span class="hljs-string">&quot;name&quot;</span>, processResult -&gt; { <span class="hljs-comment">//index the node room0</span>
-        g.index(<span class="hljs-string">&quot;sensors&quot;</span>, sensor0, <span class="hljs-string">&quot;id&quot;</span>, processResult2 -&gt; { <span class="hljs-comment">//index the node sensor0</span>
-             g.indexes(<span class="hljs-number">0</span>, System.currentTimeMillis(), (String[] indexNames) -&gt; {
-                System.out.println(<span class="hljs-string">&quot;Index names in Graph:&quot;</span>);
-                    <span class="hljs-keyword">for</span> (String indexName : indexNames) {
-                    System.out.println(<span class="hljs-string">&quot;\t&quot;</span> + indexName);
-                }
-            });
+Node LivingNode = g.newNode(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+LivingNode.set(<span class="hljs-string">&quot;name&quot;</span>, Type.STRING, <span class="hljs-string">&quot;living&quot;</span>);
 
-            g.find(<span class="hljs-number">0</span>, System.currentTimeMillis(), <span class="hljs-string">&quot;rooms&quot;</span>, <span class="hljs-string">&quot;name=room0&quot;</span>, (Node[] rooms) -&gt; {
-                System.out.println(<span class="hljs-string">&quot;Rooms found by string query:&quot;</span>);
-                <span class="hljs-keyword">for</span> (Node roomNow : rooms) {
-                    System.out.println(<span class="hljs-string">&quot;\t&quot;</span> + roomNow.toString());
-                }
-            });
-
-            g.find(<span class="hljs-number">0</span>, System.currentTimeMillis(), <span class="hljs-string">&quot;sensors&quot;</span>, <span class="hljs-string">&quot;id=4494F&quot;</span>, (Node[] sensors) -&gt; {
-                System.out.println(<span class="hljs-string">&quot;Sensors found by string query:&quot;</span>);
-                    <span class="hljs-keyword">for</span> (Node sensorNow : sensors) {
-                    System.out.println(<span class="hljs-string">&quot;\t&quot;</span> + sensorNow.toString());
-                }
-            });
-
-            g.findAll(<span class="hljs-number">0</span>, System.currentTimeMillis(), <span class="hljs-string">&quot;sensors&quot;</span>, allSensorsNow -&gt; {
-                System.out.println(<span class="hljs-string">&quot;All sensors indexed:&quot;</span>);
-                <span class="hljs-keyword">for</span> (Node sensorNow : allSensorsNow) {
-                    System.out.println(<span class="hljs-string">&quot;\t&quot;</span> + sensorNow.toString());
-                }
-            });
-        });
-    });
+<span class="hljs-comment">//Get from the graph an index called roomIndex</span>
+g.index(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-string">&quot;rooms&quot;</span>, roomIndex -&gt; {
+      <span class="hljs-comment">//Add a room to the index of rooms to be able to retrieve it fast by its name</span>
+      roomIndex.addToIndex(kitchenNode, <span class="hljs-string">&quot;name&quot;</span>);
+      roomIndex.addToIndex(LivingNode, <span class="hljs-string">&quot;name&quot;</span>);                
+      <span class="hljs-comment">//your next code goes here...</span>
+});
+</code></pre>
+<p>Now in order to retrieve all the nodes that are indexed as rooms, we do the following:</p>
+<pre><code class="lang-java">roomIndex.find(rooms -&gt; {
+  <span class="hljs-keyword">for</span> (Node room : rooms) {
+    System.out.println(room);
+  }
+});
+</code></pre>
+<p>In order to retrieve a node with a certain name, we just need to append the attribute type and value to the find method.</p>
+<pre><code class="lang-java">roomIndex.find(rooms -&gt; {
+    System.out.println(<span class="hljs-string">&quot;found: &quot;</span>+rooms.length+<span class="hljs-string">&quot; node!&quot;</span>);
+    <span class="hljs-keyword">for</span> (Node room : rooms) {
+        System.out.println(room);
+    }
+},<span class="hljs-string">&quot;name&quot;</span>,<span class="hljs-string">&quot;kitchen&quot;</span>); <span class="hljs-comment">//here we ask to filter only the node with the name = kitchen.</span>
 </code></pre>
 
                                 
@@ -577,12 +573,12 @@
 
             
                 
-                <a href="persistence.html" class="navigation navigation-prev " aria-label="Previous page: Persistence">
+                <a href="manyworld.html" class="navigation navigation-prev " aria-label="Previous page: Many-World graph">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="distributed.html" class="navigation navigation-next " aria-label="Next page: Distributed graph">
+                <a href="persistence.html" class="navigation navigation-next " aria-label="Next page: Persistence">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -593,7 +589,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Indexing","level":"1.2.5","depth":2,"next":{"title":"Distributed graph","level":"1.2.6","depth":2,"path":"start/distributed.md","ref":"start/distributed.md","articles":[]},"previous":{"title":"Persistence","level":"1.2.4","depth":2,"path":"start/persistence.md","ref":"start/persistence.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/greycat.css"}},"file":{"path":"start/indexing.md","mtime":"2017-03-22T09:56:20.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-03-22T10:36:14.217Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Indexing","level":"1.2.4","depth":2,"next":{"title":"Persistence","level":"1.2.5","depth":2,"path":"start/persistence.md","ref":"start/persistence.md","articles":[]},"previous":{"title":"Many-World graph","level":"1.2.3","depth":2,"path":"start/manyworld.md","ref":"start/manyworld.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/greycat.css"}},"file":{"path":"start/indexing.md","mtime":"2017-03-22T12:23:05.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-03-22T12:23:26.736Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
