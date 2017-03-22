@@ -1,16 +1,16 @@
 # Distribution
-MWG allows to seamlessly distribute the graph across computational nodes. 
+ allows to seamlessly distribute the graph across computational nodes. 
 Therefore, let's first setup a server node, which exposes the many-world graph to clients via websocket. 
 
 ```java
 Graph g = new GraphBuilder()
 	.withMemorySize(10000) //cache size before sync to disk
-	.withStorage(new LevelDBStorage("mwg_db"))
+	.withStorage(new LevelDBStorage("_db"))
 	.build();
 	
  g.connect(isConnected -> {
 	new WSServer(g, 8050).start();
-		System.out.println("MWG Server listener :8050");
+		System.out.println(" Server listener :8050");
 	});
 ```
 

@@ -1,4 +1,5 @@
 # Temporal graphs
+[Code sample here](https://github.com/datathings/greycat-samples/blob/master/src/main/java/greycat/samples/Temporal.java)
 
 Many domains, from social networks to cyber-physical systems to enterprise applications, need to deal with dynamic, i.e., time-evolving data. Think of a time-evolving graph like the following figure:
 

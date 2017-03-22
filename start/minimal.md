@@ -1,4 +1,5 @@
 # A simple graph
+[Code sample here](https://github.com/datathings/greycat-samples/blob/master/src/main/java/greycat/samples/Minimal.java)
 
 The first step to use GreyCat is create and connect a simple graph using the following code
 
@@ -58,4 +59,4 @@ g.disconnect(result -> {
 });
 ```
 
-Note that graph processing and traversing is fully asynchronous. So all operations are done inside of callbacks in order not to block the code execution. You can find the whole code of this tutorial [here](https://github.com/datathings/greycat-samples/blob/master/src/main/java/greycat/samples/Minimal.java). The [next tutorial](temporal.md) explores the temporal aspect of our graph database.
+Note that graph processing and traversing is fully asynchronous. So all operations are done inside of callbacks in order not to block the code execution. The [next tutorial](temporal.md) explores the temporal aspect of our graph database.

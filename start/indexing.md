@@ -1,5 +1,5 @@
 # Indexing 
-MWG allows to index your data for efficient retrieval. Indexing is straightforward. Basically, an index node is a graph node, just like all other nodes. This also implies that index nodes are temporal, i.e., what is indexed by a node depends on the time the index was created (and also the world in which the index was created). 
+ allows to index your data for efficient retrieval. Indexing is straightforward. Basically, an index node is a graph node, just like all other nodes. This also implies that index nodes are temporal, i.e., what is indexed by a node depends on the time the index was created (and also the world in which the index was created). 
 
 ```java
 	Node sensor0 = g.newNode(0, 0);

@@ -1,4 +1,6 @@
 # Many-world graphs
+[Code sample here](https://github.com/datathings/greycat-samples/blob/master/src/main/java/greycat/samples/ManyWorld.java)
+
 Prescriptive analytics call for efficient solutions to explore alternative futures, which inevitably diverge when exploring the effects of *what-if* decisions. This is shown in the following figure:
 
 ![](many_world_graph.png)
@@ -65,4 +67,4 @@ sensorW1T0.travel(world_0, timepoint_1, new Callback<Node>() {
     });
 ```
 
-At time 10, sensor0 still have the value 0.5 in the original world_0, but it has the value of 4.6 in the world_1. This many-world option allows us to simulate a large number of alternatives when searching for an optimal solution without stopping the data collection. 
+At time 10, sensor0 still have the value 0.5 in the original world_0, but it has the value of 4.6 in the world_1. This many-world option allows us to simulate a large number of alternatives when searching for an optimal solution without stopping the data collection.
