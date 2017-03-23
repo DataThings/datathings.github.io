@@ -56,7 +56,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 
 
-		<meta name="generator" content="Hugo 0.19" />
+		<meta name="generator" content="Hugo 0.18.1" />
 
 		<!--[if lte IE 8]><script src='http://datathings.com/blog/js/ie/html5shiv.js'></script><![endif]-->
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -79,11 +79,11 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 		<nav id="sidebar">
 			<ul>
 			
+				<li><a href="http://datathings.com/blog/">Home</a></li>
+			
 				<li><a href="http://datathings.com/blog/post/">All posts</a></li>
 			
 				<li><a href="http://www.datathings.com">Website</a></li>
-			
-				<li><a href="http://datathings.com/blog/">Home</a></li>
 			
 			</ul>
 		</nav>
@@ -129,7 +129,7 @@ These components can be used to do forecasting, prediction or extrapolation of m
 In R language, one of the most famous function for time series decomposition is the <a href="https://www.r-bloggers.com/time-series-decomposition/">stl function</a>.
 More recently, Facebook has released an open source framework written in python called <a href="https://research.fb.com/prophet-forecasting-at-scale/">prophet</a> for time series decomposition that is a little bit more advanced than the stl function, since it can take into account anomalies caused by non-periodic rare events.</p>
 
-<p>At <a href="www.datathings.com">datathings</a>, we are experimenting with a different approach of time series decomposition. Since we aim at enabling live data analytics, we developed our own technology that uses online and live machine learning techniques to decompose time series on the fly. For the trend component we use a live polynomial learning algorithm, and for the periodic component we use a Gaussian Mixture Model (GMM) live profiling. The random component is what is left from signal after we remove the trend and the periodic component.</p>
+<p>At <a href="http://datathings.com">DataThings</a>, we are experimenting with a different approach of time series decomposition. Since we aim at enabling live data analytics, we developed our own technology that uses online and live machine learning techniques to decompose time series on the fly. For the trend component we use a live polynomial learning algorithm, and for the periodic component we use a Gaussian Mixture Model (GMM) live profiling. The random component is what is left from signal after we remove the trend and the periodic component.</p>
 
 <p>In order to see the results of the time series decomposition, we will use the open weather dataset of Luxembourg provided by <a href="https://data.public.lu/en/">Open Data Luxembourg</a>. The dataset consists of the historical monthly average of temperature records in Luxembourg since January 1947 and can be downloaded for free from <a href="https://data.public.lu/en/datasets/monthly-meteorological-parameters-luxembourg-findel-airport-wmo-id-06590/">here</a>. Here is the plot of the temperature data:</p>
 
