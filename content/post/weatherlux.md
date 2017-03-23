@@ -16,7 +16,7 @@ This topic is relatively old, since the [main research paper](http://www.nniiem.
 In R language, one of the most famous function for time series decomposition is the [stl function](https://www.r-bloggers.com/time-series-decomposition/).
 More recently, Facebook has released an open source framework written in python called [prophet](https://research.fb.com/prophet-forecasting-at-scale/) for time series decomposition that is a little bit more advanced than the stl function, since it can take into account anomalies caused by non-periodic rare events.
 
-At [datathings](www.datathings.com), we are experimenting with a different approach of time series decomposition. Since we aim at enabling live data analytics, we developed our own technology that uses online and live machine learning techniques to decompose time series on the fly. For the trend component we use a live polynomial learning algorithm, and for the periodic component we use a Gaussian Mixture Model (GMM) live profiling. The random component is what is left from signal after we remove the trend and the periodic component.
+At [DataThings](http://datathings.com), we are experimenting with a different approach of time series decomposition. Since we aim at enabling live data analytics, we developed our own technology that uses online and live machine learning techniques to decompose time series on the fly. For the trend component we use a live polynomial learning algorithm, and for the periodic component we use a Gaussian Mixture Model (GMM) live profiling. The random component is what is left from signal after we remove the trend and the periodic component.
 
 In order to see the results of the time series decomposition, we will use the open weather dataset of Luxembourg provided by [Open Data Luxembourg](https://data.public.lu/en/). The dataset consists of the historical monthly average of temperature records in Luxembourg since January 1947 and can be downloaded for free from [here](https://data.public.lu/en/datasets/monthly-meteorological-parameters-luxembourg-findel-airport-wmo-id-06590/). Here is the plot of the temperature data:
 
@@ -44,7 +44,7 @@ In order to see the benefit of time series decomposition, we consider that our p
 
 
 Finally, to validate our results, we run the time series decomposition stl function in R and using facebook Prophet, the results are displayed in the figures below.
-They both confirm our result of increase in temperature of 2 degrees over the last 36 years. However both processes in R and with facebook prophet took more time to execute than our live approach and require to load the full dataset before learning. 
+They both confirm our result of increase in temperature of 2 degrees over the last 36 years. However both processes in R and with facebook prophet took more time to execute than our live approach and require to load the full dataset before learning.
 
 <center>Decomposition in R:</center>
 ![Decomposition in R](../../images/weatherlux/decomposition.png)
