@@ -38,8 +38,22 @@
 	{{ end }}
 		<p></p>
 
-
+<div style="display:block;">
+	<div style="display:inline-block; height:28px; overflow:hidden">
 <a href="https://twitter.com/intent/tweet?text={{ .Title }}{{ with .Site.Params.sidebar.twitter }} by @{{ . }}{{ end }}" class="twitter-share-button" data-size="large" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+<div style="display:inline-block; vertical-align: top" class="fb-share-button"
+	data-href="{{ .Permalink }}"
+	data-layout="button"
+	data-size="large">
+</div>
+</div>
+
+
+  <!-- Your share button code -->
+
+
+
 
 	{{ template "_internal/disqus.html" . }}
 {{ end }}
