@@ -56,7 +56,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 
 
-		<meta name="generator" content="Hugo 0.18.1" />
+		<meta name="generator" content="Hugo 0.19" />
 
 		<!--[if lte IE 8]><script src='http://datathings.com/blog/js/ie/html5shiv.js'></script><![endif]-->
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -90,11 +90,11 @@ fjs.parentNode.insertBefore(js, fjs);
 		<nav id="sidebar">
 			<ul>
 			
-				<li><a href="http://datathings.com/blog/">Home</a></li>
-			
 				<li><a href="http://datathings.com/blog/post/">All posts</a></li>
 			
 				<li><a href="http://www.datathings.com">Website</a></li>
+			
+				<li><a href="http://datathings.com/blog/">Home</a></li>
 			
 			</ul>
 		</nav>
@@ -144,26 +144,61 @@ More recently, Facebook has released an open source framework written in python 
 
 <p>In order to see the results of the time series decomposition, we will use the open weather dataset of Luxembourg provided by <a href="https://data.public.lu/en/">Open Data Luxembourg</a>. The dataset consists of the historical monthly average of temperature records in Luxembourg since January 1947 and can be downloaded for free from <a href="https://data.public.lu/en/datasets/monthly-meteorological-parameters-luxembourg-findel-airport-wmo-id-06590/">here</a>. Here is the plot of the temperature data:</p>
 
-<iframe width="900" height="800" frameborder="0" scrolling="no" src="https://plot.ly/~datathings/10.embed"></iframe>
+
+<figure >
+    <a href="https://plot.ly/~datathings/10.embed">
+        <img src="../../images/weatherlux/weather1.png" />
+    </a>
+    
+</figure>
+
 
 <p>Due to earth periodic nature of the yearly rotation of earth around the sun, it is very hard to see from this graph the temperature trend over the years. Time series decomposition helps extracting the periodic component from the signal.
 After passing it through a Gaussian profile, we can detect this periodic component. In January, the temperature average in Luxembourg  is around 0.5 °C, it raises to 17.5 °C in August, then falls down back to 0.5 °C in average for the January of the next year. Here is the result (we only show 2 years here for simplicity):</p>
 
-<iframe width="900" height="800" frameborder="0" scrolling="no" src="https://plot.ly/~datathings/11.embed"></iframe>
+
+<figure >
+    <a href="https://plot.ly/~datathings/11.embed">
+        <img src="../../images/weatherlux/weather2.png" />
+    </a>
+    
+</figure>
+
 
 <p>After filtering out this periodic signal, we can then fit a polynomial curve of the temperature trend over the years.</p>
 
-<iframe width="900" height="800" frameborder="0" scrolling="no" src="https://plot.ly/~datathings/12.embed"></iframe>
+
+<figure >
+    <a href="https://plot.ly/~datathings/12.embed">
+        <img src="../../images/weatherlux/weather3.png" />
+    </a>
+    
+</figure>
+
 
 <p>As you can see from the graph, the temperature trend curve was stable till 1980s, then it increased by 2 degrees the last 36 years.
 After removing the periodic and the trend signals from the original data, we are left with the random remainder. Here is what it looks like:</p>
 
-<iframe width="900" height="800" frameborder="0" scrolling="no" src="https://plot.ly/~datathings/13.embed"></iframe>
+
+<figure >
+    <a href="https://plot.ly/~datathings/13.embed">
+        <img src="../../images/weatherlux/weather4.png" />
+    </a>
+    
+</figure>
+
 
 <p>The interesting aspect about the random component is that it has an average value of 0. This is perfectly logical, since the time series decomposition goal is to move the average value of the signal to the periodic and linear trend.</p>
 
 <p>In order to see the benefit of time series decomposition, we consider that our predictive model is the sum of the trend + periodic component. If we plot this predictive model (in orange) vs the real data in (blue) we get the following graph:
-<iframe width="900" height="800" frameborder="0" scrolling="no" src="https://plot.ly/~datathings/14.embed"></iframe></p>
+
+<figure >
+    <a href="https://plot.ly/~datathings/14.embed">
+        <img src="../../images/weatherlux/weather5.png" />
+    </a>
+    
+</figure>
+</p>
 
 <p>Finally, to validate our results, we run the time series decomposition stl function in R and using facebook Prophet, the results are displayed in the figures below.
 They both confirm our result of increase in temperature of 2 degrees over the last 36 years. However both processes in R and with facebook prophet took more time to execute than our live approach and require to load the full dataset before learning.</p>
@@ -212,7 +247,7 @@ They both confirm our result of increase in temperature of 2 degrees over the la
 		<p></p>
 
 <div style="display:block;">
-	<div style="display:inline-block; height:28px; overflow:hidden">
+<div style="display:inline-block; height:28px; overflow:hidden">
 <a href="https://twitter.com/intent/tweet?text=Time%20series%20decomposition%20over%20open%20weather%20data%20from%20Luxembourg by @datathingslu" class="twitter-share-button" data-size="large" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 <div style="display:inline-block; vertical-align: top" class="fb-share-button"
