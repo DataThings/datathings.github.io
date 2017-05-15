@@ -20,27 +20,29 @@ At [DataThings](http://datathings.com), we are experimenting with a different ap
 
 In order to see the results of the time series decomposition, we will use the open weather dataset of Luxembourg provided by [Open Data Luxembourg](https://data.public.lu/en/). The dataset consists of the historical monthly average of temperature records in Luxembourg since January 1947 and can be downloaded for free from [here](https://data.public.lu/en/datasets/monthly-meteorological-parameters-luxembourg-findel-airport-wmo-id-06590/). Here is the plot of the temperature data:
 
-<iframe width="900" height="800" frameborder="0" scrolling="no" src="https://plot.ly/~datathings/10.embed"></iframe>
+
+
+{{< figure src="../../images/weatherlux/weather1.png" link="https://plot.ly/~datathings/10.embed" >}}
+
 
 Due to earth periodic nature of the yearly rotation of earth around the sun, it is very hard to see from this graph the temperature trend over the years. Time series decomposition helps extracting the periodic component from the signal.
 After passing it through a Gaussian profile, we can detect this periodic component. In January, the temperature average in Luxembourg  is around 0.5 °C, it raises to 17.5 °C in August, then falls down back to 0.5 °C in average for the January of the next year. Here is the result (we only show 2 years here for simplicity):
 
-<iframe width="900" height="800" frameborder="0" scrolling="no" src="https://plot.ly/~datathings/11.embed"></iframe>
+{{< figure src="../../images/weatherlux/weather2.png" link="https://plot.ly/~datathings/11.embed" >}}
 
  After filtering out this periodic signal, we can then fit a polynomial curve of the temperature trend over the years.
 
-
-<iframe width="900" height="800" frameborder="0" scrolling="no" src="https://plot.ly/~datathings/12.embed"></iframe>
+{{< figure src="../../images/weatherlux/weather3.png" link="https://plot.ly/~datathings/12.embed" >}}
 
 As you can see from the graph, the temperature trend curve was stable till 1980s, then it increased by 2 degrees the last 36 years.
 After removing the periodic and the trend signals from the original data, we are left with the random remainder. Here is what it looks like:
 
-<iframe width="900" height="800" frameborder="0" scrolling="no" src="https://plot.ly/~datathings/13.embed"></iframe>
+{{< figure src="../../images/weatherlux/weather4.png" link="https://plot.ly/~datathings/13.embed" >}}
 
 The interesting aspect about the random component is that it has an average value of 0. This is perfectly logical, since the time series decomposition goal is to move the average value of the signal to the periodic and linear trend.
 
 In order to see the benefit of time series decomposition, we consider that our predictive model is the sum of the trend + periodic component. If we plot this predictive model (in orange) vs the real data in (blue) we get the following graph:
-<iframe width="900" height="800" frameborder="0" scrolling="no" src="https://plot.ly/~datathings/14.embed"></iframe>
+{{< figure src="../../images/weatherlux/weather5.png" link="https://plot.ly/~datathings/14.embed" >}}
 
 
 Finally, to validate our results, we run the time series decomposition stl function in R and using facebook Prophet, the results are displayed in the figures below.
