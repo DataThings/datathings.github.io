@@ -11,12 +11,12 @@
       <changefreq>yearly</changefreq>
    </url>
    <url>
-      <loc>http://datathings.com/#facts-section</loc>
+      <loc>http://datathings.com/#services-section</loc>
       <lastmod>2017-03-03</lastmod>
       <changefreq>yearly</changefreq>
-   </url>
+   </url>   
    <url>
-      <loc>http://datathings.com/#services-section</loc>
+      <loc>http://datathings.com/#facts-section</loc>
       <lastmod>2017-03-03</lastmod>
       <changefreq>yearly</changefreq>
    </url>

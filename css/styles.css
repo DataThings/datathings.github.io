@@ -2287,8 +2287,8 @@ small,
     Scroll Progress Bar
     Home Section
     About Section
-    Facts Section
     Services Section
+    Facts Section
     Works Section
     Project Order
     Team Section
@@ -2816,6 +2816,26 @@ body {
   -ms-transform: perspective(800px) rotateY(0deg) rotateX(45deg);
   transform: perspective(800px) rotateY(0deg) rotateX(45deg);
 }
+/*===================================
+= Services Section                  =
+===================================*/
+.services-section-item {
+  -webkit-perspective: 300px;
+          perspective: 300px;
+  text-align: center;
+}
+.services-item-title {
+  margin-bottom: 15px;
+  margin-top: 15px;
+  font-weight: 300;
+}
+.services-section-item-icon {
+  margin: 0 auto;
+  font-size: 44px;
+}
+.services-section-item-text {
+  font-size: 14px;
+}
 /*=============================
 = Facts Section               =
 =============================*/
@@ -2844,26 +2864,6 @@ body {
 }
 .fact-text p {
   margin-bottom: 0;
-}
-/*===================================
-= Services Section                  =
-===================================*/
-.services-section-item {
-  -webkit-perspective: 300px;
-          perspective: 300px;
-  text-align: center;
-}
-.services-item-title {
-  margin-bottom: 15px;
-  margin-top: 15px;
-  font-weight: 300;
-}
-.services-section-item-icon {
-  margin: 0 auto;
-  font-size: 44px;
-}
-.services-section-item-text {
-  font-size: 14px;
 }
 /*=============================
 = Works Section               =
